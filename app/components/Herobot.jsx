@@ -1,6 +1,5 @@
+"use client"
 import { useRive } from '@rive-app/react-canvas';
-
-
 import React, { useEffect, useState } from 'react';
 
 export default function Herobot() {

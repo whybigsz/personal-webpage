@@ -1,3 +1,4 @@
+"use client"
 import { useRive,useStateMachineInput } from '@rive-app/react-canvas';
 import { useState, useEffect } from "react";
 
