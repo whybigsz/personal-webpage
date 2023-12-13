@@ -20,7 +20,7 @@ export const skills = [
 
 
 
-const About = () => {
+const about = () => {
   const [tab,setTab] = useState("habilidades")
   const [isPending,startTransition] = useTransition()
 
@@ -150,7 +150,7 @@ whileInView={'show'} viewport={{once:false, amount:0.7}}
   )
 }
 
-export default About
+export default about
 
 
 
