@@ -150,7 +150,7 @@ whileInView={'show'} viewport={{once:false, amount:0.7}}
   )
 }
 
-export default about
+export default About
 
 
 
