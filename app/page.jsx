@@ -3,8 +3,8 @@ import Image from 'next/image'
 import HeroSection from './components/HeroSection';
 import Navbar from "./components/Navbar";
 import ServerDeploy from "./components/ServerDeploy"
-import About from "./components/about"
-import Projects from "./components/projects"
+import About from "./components/About"
+import Projects from "./components/Projects"
 import Footer from "./components/Footer"
 import HireMe from "./components/HireMe"
 import Nav from "./components/Nav"

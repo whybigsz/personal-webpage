@@ -37,7 +37,7 @@ const projectData = [
   }
 ]
 
-const projects = () => {
+const Projects = () => {
 
   return (
     <section id="projects" className='text-white'>
@@ -71,4 +71,4 @@ const projects = () => {
   )
 }
 
-export default projects
+export default Projects
