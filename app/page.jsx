@@ -1,15 +1,13 @@
 'use client'
-import Image from 'next/image'
+
 import HeroSection from './components/HeroSection';
 import Navbar from "./components/Navbar";
-import ServerDeploy from "./components/ServerDeploy"
 import About from "./components/About"
 import Projects from "./components/Projects"
 import Footer from "./components/Footer"
-import HireMe from "./components/HireMe"
 import Nav from "./components/Nav"
 import ContactForm from "./components/ContactForm"
-import ParticleContainer from "./components/ParticlesContainer"
+
 export default function Home() {
 
 
@@ -22,9 +20,6 @@ export default function Home() {
         <HeroSection />
         <About></About>
         <Projects></Projects>
-        {/* <div className="absolute bottom-20 right-0">
-          <ServerDeploy />
-        </div> */}
         <ContactForm></ContactForm>
       </div>
 

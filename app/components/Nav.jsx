@@ -71,7 +71,7 @@ export const navData = [
           })}
         </div>
       </nav>
-    )
+    );
   }
 
   export default Nav

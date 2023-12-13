@@ -150,7 +150,7 @@ whileInView={'show'} viewport={{once:false, amount:0.7}}
 </div>
 </section>
 
-  )
+  );
 }
 
 export default About
