@@ -13,31 +13,33 @@ import {fadeIn} from '../variants'
 
 
 
-const projectData = [
-  {
-    id:1,
-    title:"Game Tight App",
-    description:"Mais de 140 Openers, respostas, testes e closers para exprimentares nas tuas interações",
-    image: '/images/p11.png',
-    tag:["All","Web"]
-  },
-  {
-    id:2,
-    title:"Projeto Final",
-    description:"Caraterização dos principais movimentos pendulares da cidade de Lisboa",
-    image: '/images/p2.png',
-    tag:["All","Web"]
-  },
-  {
-    id:3,
-    title:"Ultimate Tic-Tac-Toe",
-    description:"3x3 Tabuleiros de Tic-Tac-Toe em React",
-    image: '/images/p3.png',
-    tag:["All","Web"]
-  }
-]
+
 
 const Projects = () => {
+
+  const projectData = [
+    {
+      id:1,
+      title:"Game Tight App",
+      description:"Mais de 140 Openers, respostas, testes e closers para exprimentares nas tuas interações",
+      image: '/images/p11.png',
+      tag:["All","Web"]
+    },
+    {
+      id:2,
+      title:"Projeto Final",
+      description:"Caraterização dos principais movimentos pendulares da cidade de Lisboa",
+      image: '/images/p2.png',
+      tag:["All","Web"]
+    },
+    {
+      id:3,
+      title:"Ultimate Tic-Tac-Toe",
+      description:"3x3 Tabuleiros de Tic-Tac-Toe em React",
+      image: '/images/p3.png',
+      tag:["All","Web"]
+    }
+  ]
 
   return (
     <section id="projects" className='text-white'>

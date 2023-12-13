@@ -10,17 +10,20 @@ import ParticleContainer from "./ParticlesContainer"
 
 import { useInView } from "react-intersection-observer";
 
-export const skills = [
-  { id: '0', skillName: 'Java', amount: "95" },
-  { id: '1', skillName: 'Javascript', amount: "85" },
-  { id: '2', skillName: 'React', amount: "80" },
-  { id: '3', skillName: 'Python', amount: "70" },
-  { id: '4', skillName: 'Android',amount: "65",},
-  ];
+
 
 
 
 const About = () => {
+
+  const skills = [
+    { id: '0', skillName: 'Java', amount: "95" },
+    { id: '1', skillName: 'Javascript', amount: "85" },
+    { id: '2', skillName: 'React', amount: "80" },
+    { id: '3', skillName: 'Python', amount: "70" },
+    { id: '4', skillName: 'Android',amount: "65",},
+    ];
+
   const [tab,setTab] = useState("habilidades")
   const [isPending,startTransition] = useTransition()
 
