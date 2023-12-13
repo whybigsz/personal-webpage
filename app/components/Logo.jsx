@@ -3,7 +3,7 @@ import { useRive,useStateMachineInput } from '@rive-app/react-canvas';
 import { useState, useEffect } from "react";
 
 
-export default function logo() {
+export default function Logo() {
 
 
   const { RiveComponent, rive } = useRive({

@@ -3,7 +3,7 @@ import { useRive,useStateMachineInput } from '@rive-app/react-canvas';
 import { useState, useEffect } from "react";
 import { useLottie } from "lottie-react";
 import mv from '../sp.json';
-export default function logo() {
+export default function Logo() {
 
 
   const SM = "State Machine 1";

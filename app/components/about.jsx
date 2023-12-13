@@ -20,7 +20,7 @@ export const skills = [
 
 
 
-const about = () => {
+const About = () => {
   const [tab,setTab] = useState("habilidades")
   const [isPending,startTransition] = useTransition()
 
