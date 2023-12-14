@@ -49,7 +49,7 @@ export const navData = [
               to={link.path}
               spy={true}
               smooth={true}
-              offset={index==1 ? 30 : 0}
+              offset={index==1 ? 50 : 0}
               duration={500}
               className={`${ link.path === pathname && 'text-blue'}
                  relative flex items-center text-white group hover:text-blue transition-all
