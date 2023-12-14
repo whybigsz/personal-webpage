@@ -59,7 +59,7 @@ const Projects = () => {
           Projetos
         </h2>
         <p className='text-[#ADB7BE] text-base mt-4 '>Explora os meus projetos mais recentes.</p>
-        <Link href="https://www.github.com/whybigsz" target="_blank" className='hover:scale-125 mt-2 flex w-[140px] items-center px-6 py-3 rounded-lg bg-black-700 hover:bg-slate-200 border-solid border-2 text-white font-semibold'>
+        <Link href="https://www.github.com/whybigsz" target="_blank" className='hover:bg-black/30  hover:scale-125 mt-2 flex w-[140px] items-center px-6 py-3 rounded-lg bg-black-700 hover:bg-slate-200 border-solid border-2 text-white font-semibold'>
           Projetos <FolderProjects className="ml-2 w-5"/>
         </Link>
 

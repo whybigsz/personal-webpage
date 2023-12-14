@@ -4,7 +4,7 @@ import Link from 'next/link'
 const Footer = () => {
   return (
     <footer style={{ position: 'relative', bottom: 0 }}  className="border-t-2 w-full h-auto flex-1 shadow-md py-8 px-8">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between text-white">
         <span>{new Date().getFullYear()} &copy; Todos os direitos reservados</span>
         <div>
           {/* Construído <span className="text-primary text-2xl px-1">&#9825;</span>

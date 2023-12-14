@@ -53,7 +53,7 @@ const ProjectCard = ({imgUrl,title,description}) => {
         className='group relative overflow-hidden rounded-xl'
       >
 
-<div className={`relative w-[${size}] aspect-w-4 aspect-h-4 rounded-xl border-4 border-solid border-white group-hover:overflow-hidden`}>
+<div className={`relative w-[${size}] aspect-w-4 aspect-h-4 rounded-xl border-2 border-solid border-white group-hover:overflow-hidden`}>
       <Image
         src={imgUrl}
         alt=''
@@ -70,7 +70,7 @@ const ProjectCard = ({imgUrl,title,description}) => {
             href="/"
             className='absolute inset-0 items-center flex justify-center group-hover:bg-black/70 transition-all duration-300  xs:py-4 sm:py-0 md:py-12 lg:py-6 lg:items-baseline '
           >
-            <div className='flex items-center justify-center lg:px-0 lg:py-0 px-2 py-2 aspect-h-10 aspect-w-10 border-white border-4 border-solid rounded-full cursor-pointer hover:border-[#ADB7BE]'>
+            <div className='flex items-center justify-center lg:px-0 lg:py-0 px-2 py-2 aspect-h-10 aspect-w-10 border-white border-2 border-solid rounded-full cursor-pointer hover:border-[#ADB7BE]'>
               <CodeBracketIcon className="bg-[#ADB7BE] hover:white" />
             </div>
           </Link>

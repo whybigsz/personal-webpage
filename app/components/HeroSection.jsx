@@ -11,6 +11,7 @@ import {motion} from 'framer-motion'
 import {fadeIn} from '../variants'
 import ParticleContainer from "./ParticlesContainer"
 import Typewriter from 'typewriter-effect'
+import {Link as L} from "react-scroll"
 
 
 const HeroSection = () => {
@@ -95,12 +96,18 @@ const HeroSection = () => {
     whileInView={'show'} viewport={{once:false, amount:0.7}}
     className='place-self-start mt-12 text-left'>
       <div className="flex items-start">
-        <Link href="/dummy.pdf" target="_blank" className='hover:scale-125 text-blue border-blue-400 flex w-[165px] items-center px-6 py-3 rounded-lg mb-2 bg-black-700 hover:bg-slate-200 border-solid border-2 text-white font-semibold'>
+        <Link href="/dummy.pdf" target="_blank"  className='hover:scale-125 hover:bg-black/30 text-blue border-blue-400 flex w-[165px] items-center px-6 py-3 rounded-lg mb-2 bg-black-700 hover:bg-slate-200 border-solid border-2 text-white font-semibold'>
           Curriculum <LinkArrow className="w-6"/>
         </Link>
-        <Link href="mailto:ricardo.ferreira.2222@gmail.com" target='_blank' className=' hover:scale-125 ml-8 mt-3 text-lg font-medium capitalize text-white underline'>
-          Contactar
-        </Link>
+        <L
+              to="contact"
+              spy={true}
+              smooth={true}
+              offset={-30}
+              duration={500}
+              className=' hover:scale-125 ml-8 mt-3 text-lg font-medium capitalize text-white underline'>
+                  Contactar
+              </L>
       </div>
     </motion.div>
   </div>

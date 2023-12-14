@@ -133,6 +133,7 @@ export const GitIcon = ({className,...rest}) => {
   return (
     <svg
     xmlns="http://www.w3.org/2000/svg"
+    fill="white"
     width={60}
     height={60}
     viewBox="0 0 72 72"
@@ -296,10 +297,10 @@ export const RocketLaunch = ({className,...rest}) => {
   return (
     <svg
     xmlns="http://www.w3.org/2000/svg"
-    fill="currentColor"
+    fill="white"
     viewBox="0 0 24 24"
-    width={60}
-    height={60}
+    width={100}
+    height={100}
     className={`w-full h-auto ${className}`}
     {...rest}
   >

@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import Link from 'next/link'
 import {CircularText,RocketLaunch} from "./Icons"
 import {motion} from 'framer-motion'
+import { FaRocket } from "react-icons/fa";
 
 
 const HireMe = () => {
@@ -25,17 +26,12 @@ const HireMe = () => {
         } else if (screenInnerWidth < 639) {
           setSize(50);
           //console.log("Between 479 and 639");
-          setScale(0.4);
+          setScale(0.3);
         }else {
           setSize(60);
           setScale(1);
         }
 
-        // if(screenSize < 639){
-        //   setScale(0.4);
-        // }
-
-        //console.log("screensize "+screenSize)
 
       };
 
@@ -55,7 +51,7 @@ const HireMe = () => {
     //console.log("size "+ size)
 
   return (
-      <div className={`w-60 h-60 right-0`}>
+      <div className={`w-full h-auto right-0`}>
         <motion.div
         style={{scale: `${scale}` }}
         animate={{ rotate: 360 }}
@@ -63,7 +59,7 @@ const HireMe = () => {
         >
         <CircularText className={"fill-black"}></CircularText>
         <Link href="mailto:abcd@gmail.com" className=' flex items-center justify-center absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 shadow-md border-dark w-20 h-20 rounded-full'>
-          <RocketLaunch className={`w-6 h-6`} />
+        <FaRocket fill="white" className="w-6 h-6"/>
         </Link>
         </motion.div>
 

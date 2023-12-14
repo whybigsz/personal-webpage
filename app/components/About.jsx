@@ -97,7 +97,7 @@ const About = () => {
       title : "Educação",
       id: "educação",
       content : (
-        <ul className='pl-2'>
+        <ul className='pl-2 text-white'>
           <li>➡️ Escola Secundária da Mealhada</li>
           <li>➡️ Instituto Politécnico de Engenharia de Coimbra</li>
         </ul>
@@ -120,10 +120,10 @@ const About = () => {
     <h2 className=' text-white mt-20 text-5xl md:text-4xl lg:text-2xl font-extrabold'>
           Sobre Mim
         </h2>
-        <p className='mt-4'>💎 Sou Full-stack developer apaixonado por criar aplicações web interativas e dinâmicas.
+        <p className='mt-4 text-white'>💎 Sou Full-stack developer apaixonado por criar aplicações web interativas e dinâmicas.
           Tenho experiência em trabalhar com Android, JavaScript, React, Node.js, HTML, CSS, Flutter, Firebase, Python, C++ e Git.
         </p>
-        <p className='mt-2'>
+        <p className='mt-2 text-white'>
         💎 Aprendo rápido e estou sempre à procura de expandir o meu conhecimento e conjunto de habilidades.
           Sou um trabalhador de equipa e estou entusiasmado em trabalhar com outros com a mesma paixão para criar aplicações incríveis.</p>
           <div className='flex flex-row mt-8'>

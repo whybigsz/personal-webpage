@@ -2,13 +2,60 @@
 import React, { useState,useEffect } from 'react';
 import { TextField, Button } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { White } from '@mui/material/colors';
 import {motion} from 'framer-motion'
 import {fadeIn} from '../variants'
+import { styled } from '@mui/system';
 
-const theme = createTheme();
+const theme = createTheme({
+  palette: {
+  primary: {
+    main: '#FFF',
+  },
+  },
+  components: {
+    // Name of the component
+    MuiButton: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+          fontSize: '1rem',
+          border: "solid white",
+          color: "white",
+          '&:hover': {
+            backgroundColor:'rgba(0, 0, 0, 0.5)', // Set the background color to black on hover
+          },
+        },
+      },
+    },
+  },
+});
+
+const CssTextField = styled(TextField)({
+  '& label.Mui-focused': {
+    color: 'green',
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: 'green',
+  },
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: 'white',
+    },
+    '&:hover fieldset': {
+      borderColor: 'yellow',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: 'green',
+    },
+  },
+});
 
 const useStyles = () => ({
-  // Your styling here...
+  TextField: {
+    border: "1px solid white"
+  }
 });
 
 const ContactForm = () => {
@@ -83,28 +130,41 @@ const ContactForm = () => {
             className="contact-form"
             onSubmit={handleSubmit}
           >
-            <TextField
+            <CssTextField
               id="email"
-              label="Email"
+              label={<span style={{ color: 'white' }}>Email</span>}
               placeholder="Email"
               value={emailText}
+              InputProps={{
+                style: {
+                  color: 'white',
+                },
+              }}
               onChange={(event) => {
                 const input = event.target.value;
                 setEmailText(input);
                 setIsValidEmail(true); // Reset email validation state
               }}
-              className={classes.email}
+              className={`mb-4 `}
               error={!isValidEmail && emailText !== ''}
               helperText={emailText !== '' && !isValidEmail && 'Insira um email válido'}
               variant="outlined"
-            />
-            <TextField
+           />
+            <CssTextField
               id="message"
-              label="Mensagem"
+              label={
+                <span style={{ color: 'white' }}>Mensagem</span>
+
+              }
               placeholder="Mensagem"
               value={messageText}
+              InputProps={{
+                style: {
+                  color: 'white',
+                },
+              }}
               onChange={(event) => setMessageText(event.target.value)}
-              className={classes.message}
+              className={`mb-4 `}
               multiline
               rows={5}
               variant="outlined"
@@ -113,7 +173,7 @@ const ContactForm = () => {
               id="submit"
               label="Enviar"
               variant="contained"
-              className={classes.submit}
+              className=''
               disabled={status === 'PENDING'}
               onClick={handleSubmit}
             >

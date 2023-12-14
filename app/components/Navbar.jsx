@@ -58,29 +58,25 @@ group-hover:w-full transition-[width] ease duration-300 ${pathname === href ? 'w
 const Navbar = () => {
 
   const [isOpen, setIsOpen] = useState(false);
-  const [lg,setLg] = useState(false);
+  const [lg, setLg] = useState(false);
 
   const handleClick = () => {
-      setIsOpen(!isOpen);
-  }
+    setIsOpen(!isOpen);
+  };
 
   const handleResize = () => {
-    // Check window width and close the menu if it's larger than lg breakpoint
-    if (screen.width >= 1024 && isOpen) {
+    setLg(window.innerWidth < 1024);
+    if (isOpen && window.innerWidth >= 1024) {
       setIsOpen(false);
-      setLg(false)
-    }
-    if (screen.width <1024 || window.innerWidth < 1024) {
-      setLg(true);
-      console.log("entrei janela")
-    }else{
-      setLg(false);
     }
   };
 
   useEffect(() => {
     // Add event listener for window resize
     window.addEventListener('resize', handleResize);
+
+    // Call handleResize initially to set the initial state
+    handleResize();
 
     // Cleanup function
     return () => {
@@ -90,10 +86,11 @@ const Navbar = () => {
 
   return (
 
-    <div className='w-full sm:px-20 px-40 py-8 font-medium flex items-center'>
+    <div className='w-full sm:px-20 px-40 py-8 font-medium flex items-center xs:items-stre'>
+
 
         {lg ?
-        <div className='absolute right-10 xs:mt-8 xs:right-0 mt-16 sm:mt-10 sm:right-0'>
+        <div className='fixed w-48 h-48 right-10 xs:mt-8 xs:right-6 mt-16 sm:mt-10 sm:right-0'>
             <HireMe />
         </div> : null }
 
@@ -114,9 +111,9 @@ const Navbar = () => {
 
           <nav>
 
-              <CustomLink href="/" title="Início" className='mr-4' style={{fontSize:20, fontWeight: 'semibold'}}/>
-              <CustomLink href="about" title="Sobre" className='mx-4' style={{fontSize:20, fontWeight: 'semibold'}}/>
-              <CustomLink href="projects" title="Projetos" className='mx-4' style={{fontSize:20, fontWeight: 'semibold'}}/>
+              <CustomLink href="/" title="Início" className='mr-4 text-white' style={{fontSize:20, fontWeight: 'semibold'}}/>
+              <CustomLink href="about" title="Sobre" className='mx-4 text-white' style={{fontSize:20, fontWeight: 'semibold'}}/>
+              <CustomLink href="projects" title="Projetos" className='mx-4 text-white' style={{fontSize:20, fontWeight: 'semibold'}}/>
               {/* <CustomLink href="/about" title="Sobre" className='mx-4' style={{fontSize:20, fontWeight: 'semibold'}}/>
               <CustomLink href="/projetos" title="Projetos" className='mx-4' style={{fontSize:20, fontWeight: 'semibold'}}/> */}
           </nav>
@@ -167,7 +164,7 @@ const Navbar = () => {
                 },
               }}
               >
-              <GitIcon className='w-6 h-6 text-gray-700' />
+              <GitIcon className='w-6 h-6 ' />
                   </motion.a>
           </nav>
         </motion.div>
