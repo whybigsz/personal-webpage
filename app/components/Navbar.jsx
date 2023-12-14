@@ -90,7 +90,7 @@ const Navbar = () => {
 
 
         {lg ?
-        <div className='fixed w-48 h-48 right-10 xs:mt-8 xs:right-6 mt-16 sm:mt-10 sm:right-0'>
+        <div className='w-48 h-48 absolute right-10 xs:mt-8 xs:right-6 mt-16 sm:mt-10 sm:right-0'>
             <HireMe />
         </div> : null }
 

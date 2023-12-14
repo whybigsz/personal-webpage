@@ -9,22 +9,20 @@ import { styled } from '@mui/system';
 
 const theme = createTheme({
   palette: {
-  primary: {
-    main: '#FFF',
-  },
+    primary: {
+      main: '#fff', // Set the primary color to white
+    },
   },
   components: {
-    // Name of the component
     MuiButton: {
       styleOverrides: {
-        // Name of the slot
         root: {
-          // Some CSS
           fontSize: '1rem',
           border: "solid white",
-          color: "white",
+          backgroundColor: '#128C74', // Set the background color to a darker blue
+          color: '#fff', // Set the text color to white
           '&:hover': {
-            backgroundColor:'rgba(0, 0, 0, 0.5)', // Set the background color to black on hover
+            backgroundColor: '#005641', // Make the background color slightly darker on hover
           },
         },
       },
@@ -122,7 +120,7 @@ const ContactForm = () => {
       <motion.div
       variants={fadeIn('up',0.5)} initial="hidden"
       whileInView={'show'} viewport={{once:false, amount:0.7}}
-      id='contact' className='py-20'>
+      id='contact' className='py-20 h-[800px]'>
         <h2 className='text-center text-white mt-20 text-5xl md:text-4xl lg:text-2xl font-extrabold'>Contactar</h2>
         <div className="contact-form-wrapper">
           <form
