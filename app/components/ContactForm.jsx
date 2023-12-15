@@ -118,11 +118,10 @@ const ContactForm = () => {
   return (
     <ThemeProvider theme={theme}>
       <motion.div
-      variants={fadeIn('up',0.5)} initial="hidden"
+      variants={fadeIn('up',1)} initial="hidden"
       whileInView={'show'} viewport={{once:false, amount:0.7}}
       id='contact' className='py-20 h-[800px]'>
         <h2 className='text-center text-white mt-20 text-5xl md:text-4xl lg:text-2xl font-extrabold'>Contactar</h2>
-        <div className="contact-form-wrapper">
           <form
             id="contact-form"
             className="contact-form"
@@ -191,7 +190,6 @@ const ContactForm = () => {
               status === 'ERROR' && <p className='mt-4 '>Ooops! Erro no formulário. Tenta de novo</p>
             )}
           </form>
-        </div>
       </motion.div>
     </ThemeProvider>
   );
