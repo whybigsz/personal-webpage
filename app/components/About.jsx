@@ -143,7 +143,7 @@ const About = () => {
   <motion.div
 variants={fadeIn('down',0.5)} initial="hidden"
 whileInView={'show'} viewport={{once:false, amount:0.7}}
-  className="ml-10 place-self-center">
+  className="ml-10 place-self-center xs:hidden">
     <RiveRobot></RiveRobot>
   </motion.div>
 
