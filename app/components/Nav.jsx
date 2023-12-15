@@ -20,7 +20,7 @@ export const navData = [
   ];
 
   import {Link as L} from "react-scroll"
-  import React, {useEffect} from 'react'
+  import React from 'react'
   import {useRouter} from 'next/navigation';
 
 
@@ -28,62 +28,7 @@ export const navData = [
   const Nav = () => {
 
     const router = useRouter();
-  const pathname = router.pathname;
-
-  useEffect(() => {
-    const navElement = document.getElementById('nav');
-
-    if (navElement) {
-      const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            // Keyboard is open, hide the navigation bar
-            navElement.style.display = 'none';
-          } else {
-            // Keyboard is closed, show the navigation bar
-            navElement.style.display = 'block';
-          }
-        });
-      }, {
-        root: null,
-        threshold: 0,
-      });
-
-      observer.observe(navElement);
-
-      // Clean up the observer when the component is unmounted
-      return () => {
-        observer.disconnect();
-      };
-    }
-
-    // Return an empty cleanup function if navElement is not found
-    return () => {};
-  }, []);
-
-  const navElement = document.getElementById('nav');
-
-  const handleKeyboardVisibleChange = (event) => {
-    if (navElement) {
-      if (event.value) {
-        // Keyboard is open, hide the navigation bar
-        navElement.style.display = 'none';
-      } else {
-        // Keyboard is closed, show the navigation bar
-        navElement.style.display = 'block';
-      }
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener('keyboardvisibilitychange', handleKeyboardVisibleChange);
-
-    // Clean up the event listener when the component is unmounted
-    return () => {
-      window.removeEventListener('keyboardvisibilitychange', handleKeyboardVisibleChange);
-    };
-  }, []);
-
+    const pathname = router.pathname;
 
     return (
       // <nav className='flex flex-col items-center xl:justify-center gap-y-4
