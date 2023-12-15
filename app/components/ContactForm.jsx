@@ -120,7 +120,7 @@ const ContactForm = () => {
       <motion.div
       variants={fadeIn('up',0.7)} initial="hidden"
       whileInView={'show'} viewport={{once:false, amount:0.7}}
-      id='contact' className='py-20 h-[1000px]'>
+      id='contact' className='py-20 h-[800px]'>
         <h2 className='text-center text-white mt-20 text-5xl md:text-4xl lg:text-2xl font-extrabold'>Contactar</h2>
           <form
             id="contact-form"
