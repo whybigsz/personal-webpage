@@ -6,7 +6,7 @@ HiRectangleGroup,
 HiChatBubbleBottomCenterText,
 HiEnvelope} from 'react-icons/hi2'
 
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { View, Keyboard, Platform } from 'react-native';
 
 export const navData = [
   { name: 'Início', path: '/', icon: <HiHome  /> },
@@ -35,11 +35,38 @@ export const navData = [
     const router = useRouter();
     const pathname = router.pathname;
 
+    const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      Platform.OS === 'android' ? 'keyboardDidShow' : 'keyboardWillShow',
+      () => {
+        setKeyboardVisible(true);
+      }
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      Platform.OS === 'android' ? 'keyboardDidHide' : 'keyboardWillHide',
+      () => {
+        setKeyboardVisible(false);
+      }
+    );
+
+    // Clean up listeners when component unmounts
+    return () => {
+      keyboardDidShowListener.remove();
+      keyboardDidHideListener.remove();
+    };
+  }, []);
+
+  if (isKeyboardVisible) {
+    return null; // Hide the navigation when the keyboard is visible
+  }
+
     return (
       // <nav className='flex flex-col items-center xl:justify-center gap-y-4
       // fixed h-max bottom-0 mt-auto xl:right-[2%] z-50 top-8 w-full
       // xl:w-16 xl:max-w-md xl:fixed
-      <KeyboardAwareScrollView contentContainerStyle={{ flex: 1 }}>
+      <View>
       <nav   className='flex items-center justify-center fixed top-auto bottom-1/2 right-[2%] transform translate-y-1/2
       w-16 max-w-md z-50 md:bottom-10 md:w-full md:left-1/2 md:-translate-x-1/2'>
   <div className='flex flex-col md:flex-row items-center justify-between w-full  h-full gap-y-10 px-4 py-4 md:px-40
@@ -73,7 +100,7 @@ export const navData = [
           })}
         </div>
       </nav>
-      </KeyboardAwareScrollView>
+      </View>
     );
   }
 
