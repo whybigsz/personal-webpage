@@ -118,9 +118,9 @@ const ContactForm = () => {
   return (
     <ThemeProvider theme={theme}>
       <motion.div
-      variants={fadeIn('up',1)} initial="hidden"
+      variants={fadeIn('down',0.7)} initial="hidden"
       whileInView={'show'} viewport={{once:false, amount:0.7}}
-      id='contact' className='py-20 h-[800px]'>
+      id='contact' className='py-20 h-[1000px]'>
         <h2 className='text-center text-white mt-20 text-5xl md:text-4xl lg:text-2xl font-extrabold'>Contactar</h2>
           <form
             id="contact-form"
