@@ -87,7 +87,7 @@ const ProjectCard = ({imgUrl,title,description}) => {
 
         {isHovering ? (
           <motion.div animate={{ rotate: 360 }} transition={{ type: 'spring', velocity: 2 }}>
-            <p className='lg:text-sm w-[200px]'>{description}</p>
+            <p className='lg:text-sm xs:w-[100px] w-[200px]'>{description}</p>
           </motion.div>
         ) : null}
       </div>

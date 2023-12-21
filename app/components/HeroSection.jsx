@@ -96,7 +96,7 @@ const HeroSection = () => {
     whileInView={'show'} viewport={{once:false, amount:0.7}}
     className='place-self-start mt-12 text-left'>
       <div className="flex items-start">
-        <Link href="/dummy.pdf" target="_blank"  className='hover:scale-125 hover:bg-black/30 text-blue border-blue-400 flex w-[165px] items-center px-6 py-3 rounded-lg mb-2 bg-black-700 hover:bg-slate-200 border-solid border-2 text-white font-semibold'>
+        <Link href="/curriculo.pdf" target="_blank"  className='hover:scale-125 text-blue border-blue-400 flex w-[165px] items-center px-6 py-3 rounded-lg mb-2 border-solid border-2 text-white font-semibold'>
           Curriculum <LinkArrow className="w-6"/>
         </Link>
         <L

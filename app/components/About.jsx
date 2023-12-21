@@ -8,7 +8,7 @@ import {motion} from 'framer-motion'
 import {fadeIn} from '../variants'
 import ParticleContainer from "./ParticlesContainer"
 
-import { useInView } from "react-intersection-observer";
+import { useInView, useViewport } from "react-intersection-observer";
 
 
 
@@ -115,7 +115,7 @@ const About = () => {
 
   <motion.div
   variants={fadeIn('up',0.4)} initial="hidden"
-  whileInView={'show'} viewport={{once:false, amount:0.7}}
+  whileInView={'show'} viewport={{once:true, amount:0.7}}
   className={`ml-28 lg:ml-0 place-self-start mt-10 text-left relative`}>
     <h2 className=' text-white mt-20 text-5xl md:text-4xl lg:text-2xl font-extrabold'>
           Sobre Mim
