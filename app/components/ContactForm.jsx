@@ -1,10 +1,10 @@
 // ContactForm.jsx
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TextField, Button } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { White } from '@mui/material/colors';
-import {motion} from 'framer-motion'
-import {fadeIn} from '../variants'
+import { motion } from 'framer-motion'
+import { fadeIn } from '../variants'
 import { styled } from '@mui/system';
 
 const theme = createTheme({
@@ -19,10 +19,10 @@ const theme = createTheme({
         root: {
           fontSize: '1rem',
           border: "solid white",
-          backgroundColor: '#128C74', // Set the background color to a darker blue
+          backgroundColor: '#0f52ba', // Set the background color to a darker blue
           color: '#fff', // Set the text color to white
           '&:hover': {
-            backgroundColor: '#005641', // Make the background color slightly darker on hover
+            backgroundColor: '#1134a6', // Make the background color slightly darker on hover
           },
         },
       },
@@ -118,76 +118,76 @@ const ContactForm = () => {
   return (
     <ThemeProvider theme={theme}>
       <div
-      id='contact' className='py-20 h-[800px]'>
+        id='contact' className='py-20 h-[800px]'>
         <h2 className='text-center text-white mt-20 text-5xl md:text-4xl lg:text-2xl font-extrabold'>Contactar</h2>
-          <form
-            id="contact-form"
-            className="contact-form"
-            onSubmit={handleSubmit}
-          >
-            <CssTextField
-              id="email"
-              label={<span style={{ color: 'white' }}>Email</span>}
-              placeholder="Email"
-              value={emailText}
-              InputProps={{
-                style: {
-                  color: 'white',
-                },
-              }}
-              onChange={(event) => {
-                const input = event.target.value;
-                setEmailText(input);
-                setIsValidEmail(true); // Reset email validation state
-              }}
-              className={`mb-4 `}
-              error={!isValidEmail && emailText !== ''}
-              helperText={emailText !== '' && !isValidEmail && 'Insira um email válido'}
-              variant="outlined"
-           />
-            <CssTextField
-              id="message"
-              label={
-                <span style={{ color: 'white' }}>Mensagem</span>
+        <form
+          id="contact-form"
+          className="contact-form"
+          onSubmit={handleSubmit}
+        >
+          <CssTextField
+            id="email"
+            label={<span style={{ color: 'white' }}>Email</span>}
+            placeholder="Email"
+            value={emailText}
+            InputProps={{
+              style: {
+                color: 'white',
+              },
+            }}
+            onChange={(event) => {
+              const input = event.target.value;
+              setEmailText(input);
+              setIsValidEmail(true); // Reset email validation state
+            }}
+            className={`mb-4 `}
+            error={!isValidEmail && emailText !== ''}
+            helperText={emailText !== '' && !isValidEmail && 'Insira um email válido'}
+            variant="outlined"
+          />
+          <CssTextField
+            id="message"
+            label={
+              <span style={{ color: 'white' }}>Mensagem</span>
 
-              }
-              placeholder="Mensagem"
-              value={messageText}
-              InputProps={{
-                style: {
-                  color: 'white',
-                },
-              }}
-              onChange={(event) => setMessageText(event.target.value)}
-              className={`mb-4 `}
-              multiline
-              rows={5}
-              variant="outlined"
-            />
-            <Button
-              id="submit"
-              label="Enviar"
-              variant="contained"
-              className=''
-              disabled={status === 'PENDING'}
-              onClick={handleSubmit}
+            }
+            placeholder="Mensagem"
+            value={messageText}
+            InputProps={{
+              style: {
+                color: 'white',
+              },
+            }}
+            onChange={(event) => setMessageText(event.target.value)}
+            className={`mb-4 `}
+            multiline
+            rows={5}
+            variant="outlined"
+          />
+          <Button
+            id="submit"
+            label="Enviar"
+            variant="contained"
+            className=''
+            disabled={status === 'PENDING'}
+            onClick={handleSubmit}
+          >
+            Enviar
+          </Button>
+          {status === 'SUCCESS' ? (
+            <motion.p
+              initial={{ opacity: 1, scale: 1 }}
+              animate={{ opacity: isVisible ? 1 : 0, scale: isVisible ? 1.2 : 0.8 }}
+              transition={{ duration: 1, delay: 0.3 }}
+              exit={{ opacity: 0, scale: 0 }}
+              className="email-success mt-4"
             >
-              Enviar
-            </Button>
-            {status === 'SUCCESS' ? (
-              <motion.p
-                initial={{ opacity: 1, scale: 1 }}
-                animate={{ opacity: isVisible ? 1 : 0, scale: isVisible ? 1.2 : 0.8 }}
-                transition={{ duration: 1, delay: 0.3 }}
-                exit={{ opacity: 0, scale: 0 }}
-                className="email-success mt-4"
-              >
-                Obrigado. Mensagem enviada com sucesso!
-              </motion.p>
-            ) : (
-              status === 'ERROR' && <p className='mt-4 '>Ooops! Erro no formulário. Tenta de novo</p>
-            )}
-          </form>
+              Obrigado. Mensagem enviada com sucesso!
+            </motion.p>
+          ) : (
+            status === 'ERROR' && <p className='mt-4 '>Ooops! Erro no formulário. Tenta de novo</p>
+          )}
+        </form>
       </div>
     </ThemeProvider>
   );
