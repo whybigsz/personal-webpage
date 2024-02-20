@@ -12,7 +12,7 @@ export default function Home() {
 
 
   return (
-    <div id='/' className="relative flex flex-col min-h-screen bg-black/80">
+    <div id='/' className="relative flex flex-col min-h-screen bg-gradient-radial from-blue-500 to-slate-900">
       <Navbar />
       <Nav></Nav>
 
