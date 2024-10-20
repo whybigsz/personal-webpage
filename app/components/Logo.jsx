@@ -1,5 +1,5 @@
 "use client"
-import { useRive,useStateMachineInput } from '@rive-app/react-canvas';
+import { useRive, useStateMachineInput } from '@rive-app/react-canvas';
 import { useState, useEffect } from "react";
 
 
@@ -7,30 +7,14 @@ export default function Logo() {
 
 
   const { RiveComponent, rive } = useRive({
-    src: 'gyygy.riv',
-    stateMachines:"State Machine 1",
-    artboard: 'Hero Demo Listeners Resize',
+    src: 'live_in_red.riv',
+    // stateMachines: "State Machine 1",
+    artboard: 'Artboard',
     autoplay: true,
     onStateChange: (event) => {
       console.log(event.data[0]);
     },
   });
-
-   useStateMachineInput(
-    rive,
-    "State Machine 1",
-    "numSize",0
-  );
-  useStateMachineInput(
-    rive,
-    "State Machine 1",
-    "numX",12
-  );
-  useStateMachineInput(
-    rive,
-    "State Machine 1",
-    "numY",55
-  );
 
   const [scale, setScale] = useState(1);
 
@@ -40,9 +24,9 @@ export default function Logo() {
       const screenSize = screen.width;
 
 
-      if(screenSize < 639){
+      if (screenSize < 639) {
         setScale(0.5);
-      }else{
+      } else {
         setScale(1);
       }
 
@@ -67,9 +51,9 @@ export default function Logo() {
     // and width for this example.
 
     <div className='flex items-center justify-between  rounded-full overflow-hidden'>
-        <RiveComponent
+      <RiveComponent
         style={{ width: dynamicSize, height: dynamicSize }}
-         />
-      </div>
+      />
+    </div>
   );
 }

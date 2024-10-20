@@ -6,15 +6,17 @@ import About from "./components/About"
 import Projects from "./components/Projects"
 import Footer from "./components/Footer"
 import Nav from "./components/Nav"
+import SideBar from "./components/SideBar"
 import ContactForm from "./components/ContactForm"
 
 export default function Home() {
 
 
   return (
-    <div id='/' className="relative flex flex-col min-h-screen bg-gradient-radial from-blue-500 to-slate-900">
+    <div id='/' className="relative flex flex-col min-h-screen bg-black/90">
+      <SideBar />
       <Navbar />
-      <Nav></Nav>
+      {/* <Nav></Nav> */}
 
       <div className="container mx-auto left-0 px-4 flex flex-col">
         <HeroSection />
