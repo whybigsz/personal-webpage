@@ -196,10 +196,10 @@ const Navbar = () => {
           : null
       }
 
-      <div
+      {/* <div
         className='absolute xs:left-[45%] sm:mt-8 xs:mt-8 left-[50%] top-2 translate-x-[-50%] mt-4' style={{ scale: 1.2, opacity: 0.65 }}>
         <Logo></Logo>
-      </div>
+      </div> */}
 
     </div >
   )

@@ -27,7 +27,7 @@ export default function Logo() {
       if (screenSize < 639) {
         setScale(0.5);
       } else {
-        setScale(1);
+        setScale(1.3);
       }
 
     };
@@ -44,13 +44,13 @@ export default function Logo() {
     };
   }, []);
 
-  const dynamicSize = `${scale * 100}px`;
+  const dynamicSize = `${scale * 150}px`;
 
   return (
     // The animation will fit to the parent element, so we set a large height
     // and width for this example.
 
-    <div className='flex items-center justify-between  rounded-full overflow-hidden'>
+    <div className='flex items-center justify-between rounded-full overflow-hidden'>
       <RiveComponent
         style={{ width: dynamicSize, height: dynamicSize }}
       />
