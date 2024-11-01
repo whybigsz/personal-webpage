@@ -30,9 +30,7 @@ export default function Home() {
         <ContactForm></ContactForm>
       </div>
 
-      <div className="md:hidden">
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 }

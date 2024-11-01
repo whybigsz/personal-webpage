@@ -149,10 +149,10 @@ const Experience = () => {
             key={index}
             className={`flex w-full ${index % 2 === 0 ? 'justify-end pr-4' : 'justify-start pl-4'}`}
           >
-            <Card className={`w-[48%] md:w-[45%] mt-10 bg-zinc-800 border-0 rounded-[24px] text-white p-8 shadow-lg relative ${index % 2 === 0 ? 'mr-auto' : 'ml-auto'}`}>
+            <Card className={`w-[48%] md:w-[45%] mt-12 bg-zinc-800 border-0 rounded-[24px] text-white p-8 shadow-lg relative ${index % 2 === 0 ? 'mr-auto' : 'ml-auto'}`}>
               {/* Timeline Point */}
               <motion.div
-                className={`absolute top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-rose-800 ${index % 2 === 0 ? 'left-full ml-[1.5rem]' : 'right-full mr-[1.5rem]'}`}
+                className={`absolute top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-rose-800 ${index % 2 === 0 ? 'left-full ml-[1.6rem]' : 'right-full mr-[1.5rem]'}`}
                 initial={{ scale: 0 }}
                 animate={{
                   scale: timelineProgress > index / experiences.length ? 1 : 0,
@@ -162,7 +162,7 @@ const Experience = () => {
 
               {/* Arrow Indicator */}
               <motion.div
-                className={`absolute top-1/2 -translate-y-1/2 ${index % 2 === 0 ? 'left-full ml-[-0.75rem]' : 'right-full mr-[-0.75rem]'}`}
+                className={`absolute top-[54%] -translate-y-1/2 ${index % 2 === 0 ? 'left-full ml-[-0.75rem]' : 'right-full mr-[-0.75rem]'}`}
                 initial={{ opacity: 0 }}
                 animate={{
                   opacity: timelineProgress > index / experiences.length ? 1 : 0,
@@ -170,7 +170,7 @@ const Experience = () => {
                 }}
               >
                 {index % 2 === 0 ? (
-                  <RiTriangleFill className="w-8 h-8 text-zinc-800 transform rotate-90" />
+                  <RiTriangleFill className="w-8 h-8 text-zinc-800  transform rotate-90" />
                 ) : (
                   <RiTriangleFill className="w-8 h-8 text-zinc-800 transform -rotate-90" />
                 )}

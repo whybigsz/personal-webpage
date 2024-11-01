@@ -1,195 +1,64 @@
 // ContactForm.jsx
-import React, { useState, useEffect } from 'react';
-import { TextField, Button } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { White } from '@mui/material/colors';
-import { motion } from 'framer-motion'
-import { fadeIn } from '../variants'
-import { styled } from '@mui/system';
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#fff', // Set the primary color to white
-    },
-  },
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          fontSize: '1rem',
-          border: "solid white",
-          backgroundColor: '#0f52ba', // Set the background color to a darker blue
-          color: '#fff', // Set the text color to white
-          '&:hover': {
-            backgroundColor: '#1134a6', // Make the background color slightly darker on hover
-          },
-        },
-      },
-    },
-  },
-});
-
-const CssTextField = styled(TextField)({
-  '& label.Mui-focused': {
-    color: 'green',
-  },
-  '& .MuiInput-underline:after': {
-    borderBottomColor: 'green',
-  },
-  '& .MuiOutlinedInput-root': {
-    '& fieldset': {
-      borderColor: 'white',
-    },
-    '&:hover fieldset': {
-      borderColor: 'yellow',
-    },
-    '&.Mui-focused fieldset': {
-      borderColor: 'green',
-    },
-  },
-});
-
-const useStyles = () => ({
-  TextField: {
-    border: "1px solid white"
-  }
-});
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import React, { useRef } from 'react';
+import emailjs from '@emailjs/browser';
 
 const ContactForm = () => {
-  const [status, setStatus] = useState('');
-  const [emailText, setEmailText] = useState('');
-  const [messageText, setMessageText] = useState('');
-  const [isValidEmail, setIsValidEmail] = useState(true); // New state for email validation
-  const [isVisible, setIsVisible] = useState(true);
 
-  const classes = useStyles();
+  const form = useRef();
 
-  const validateEmail = (email) => {
-    // Simple email validation (you can replace this with a more robust validation)
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
-  const handleSubmit = async (e) => {
+  const sendEmail = (e) => {
     e.preventDefault();
 
-    // Validate the email before submitting
-    if (!validateEmail(emailText)) {
-      setIsValidEmail(false);
-      return;
-    }
-
-    try {
-      const response = await fetch('http://localhost:3001/api/send-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email: emailText, message: messageText }),
+    emailjs.sendForm('service_x642q28', 'template_49yo6ir', form.current, '4Ore9w28disZ5L4Cx')
+      .then((result) => {
+        console.log('SUCCESS!', result.text);
+      }, (error) => {
+        console.log('FAILED...', error.text);
       });
-
-      if (response.ok) {
-        setStatus('SUCCESS');
-        setEmailText('');
-        setMessageText('');
-        document.getElementById('contact-form').reset();
-
-        // Set isVisible to true after a successful submission
-        setIsVisible(true);
-
-        // Reset isVisible to false after a delay (3 seconds in this example)
-        setTimeout(() => {
-          setIsVisible(false);
-        }, 3000);
-
-        // Reset email validation state
-        setIsValidEmail(true);
-      } else {
-        console.error(error);
-        setStatus('ERROR');
-      }
-    } catch (error) {
-      console.error(error);
-      setStatus('ERROR');
-    }
   };
 
-  return (
-    <ThemeProvider theme={theme}>
-      <div
-        id='contact' className='py-20 h-[800px]'>
-        <h2 className='text-center text-white mt-20 text-5xl md:text-4xl lg:text-2xl font-extrabold'>Contactar</h2>
-        <form
-          id="contact-form"
-          className="contact-form"
-          onSubmit={handleSubmit}
-        >
-          <CssTextField
-            id="email"
-            label={<span style={{ color: 'white' }}>Email</span>}
-            placeholder="Email"
-            value={emailText}
-            InputProps={{
-              style: {
-                color: 'white',
-              },
-            }}
-            onChange={(event) => {
-              const input = event.target.value;
-              setEmailText(input);
-              setIsValidEmail(true); // Reset email validation state
-            }}
-            className={`mb-4 `}
-            error={!isValidEmail && emailText !== ''}
-            helperText={emailText !== '' && !isValidEmail && 'Insira um email válido'}
-            variant="outlined"
-          />
-          <CssTextField
-            id="message"
-            label={
-              <span style={{ color: 'white' }}>Mensagem</span>
 
-            }
+  return (
+    <div className="w-full max-w-4xl mx-auto p-4 flex flex-col items-center mb-16">
+      <h2 className="text-5xl text-white font-bold my-16">Contactar</h2>
+      <form ref={form} onSubmit={sendEmail} id='contact-form' className="space-y-8 w-full">
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-8">
+          <div>
+            <Input
+              type="text"
+              placeholder="Nome"
+              name="user_name"
+              required
+              className="w-full bg-zinc-800 text-white rounded-[24px] p-[2rem]"
+            />
+          </div>
+          <div>
+            <Input
+              type="email"
+              placeholder="Email"
+              name="user_email"
+              required
+              className="w-full bg-zinc-800 text-white rounded-[24px] p-[2rem]"
+            />
+          </div>
+        </div>
+        <div>
+          <Textarea
+            id='contact-message'
             placeholder="Mensagem"
-            value={messageText}
-            InputProps={{
-              style: {
-                color: 'white',
-              },
-            }}
-            onChange={(event) => setMessageText(event.target.value)}
-            className={`mb-4 `}
-            multiline
-            rows={5}
-            variant="outlined"
+            name="user_message"
+            required
+            className="w-full bg-zinc-800 text-white  rounded-[24px] min-h-[150px] p-[2rem]"
           />
-          <Button
-            id="submit"
-            label="Enviar"
-            variant="contained"
-            className=''
-            disabled={status === 'PENDING'}
-            onClick={handleSubmit}
-          >
-            Enviar
-          </Button>
-          {status === 'SUCCESS' ? (
-            <motion.p
-              initial={{ opacity: 1, scale: 1 }}
-              animate={{ opacity: isVisible ? 1 : 0, scale: isVisible ? 1.2 : 0.8 }}
-              transition={{ duration: 1, delay: 0.3 }}
-              exit={{ opacity: 0, scale: 0 }}
-              className="email-success mt-4"
-            >
-              Obrigado. Mensagem enviada com sucesso!
-            </motion.p>
-          ) : (
-            status === 'ERROR' && <p className='mt-4 '>Ooops! Erro no formulário. Tenta de novo</p>
-          )}
-        </form>
-      </div>
-    </ThemeProvider>
+        </div>
+        <Button type="submit" className="w-full rounded-[24px] hover:scale-105 hover:bg-black/20  bg-rose-500 p-6 my-2 ">
+          Enviar Mensagem
+        </Button>
+      </form>
+    </div>
   );
 };
 

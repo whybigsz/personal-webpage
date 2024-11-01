@@ -14,7 +14,7 @@ import { Link as L } from "react-scroll"
 
 
 
-const CustomLink = ({ href, title, className = "", style }) => {
+export const CustomLink = ({ href, title, className = "", style }) => {
 
   const pathname = usePathname()
   console.log(pathname)
