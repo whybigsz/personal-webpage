@@ -44,7 +44,7 @@ const Projects = () => {
   ]
 
   const ProjectCard = ({ project }) => (
-    <Card className="flex flex-col w-full max-w-lg p-3  bg-zinc-800 border-0 rounded-[24px]">
+    <Card className="flex flex-col w-full max-w-lg p-3 lg:max-w-none  bg-zinc-800 border-0 rounded-[24px]">
       <CardHeader className="">
         <Image
           src={project.image}
@@ -73,9 +73,9 @@ const Projects = () => {
   )
 
   return (
-    <section className="py-20">
+    <section className="py-20 px-10 sm:px-4 lg:justify-center ">
       <h2 className="text-5xl font-bold text-white font-title text-center mb-16">Projetos Recentes</h2>
-      <div className="flex flex-row gap-8 justify-center">
+      <div className="flex flex-row lg:flex-col lg:items-center  gap-8 justify-center">
         {projects.map((project, index) => (
           <ProjectCard key={index} project={project} />
         ))}

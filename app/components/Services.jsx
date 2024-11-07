@@ -37,7 +37,7 @@ const Services = () => {
   ]
 
   const ServiceCard = ({ service }) => (
-    <Card className="flex flex-col w-full max-w-lg p-6 bg-zinc-800 border-0 rounded-[24px]">
+    <Card className="flex flex-col w-full max-w-lg lg:max-w-none p-6 bg-zinc-800 border-0 rounded-[24px]">
       <CardHeader className="pb-4">
         <div className="relative my-4 ml-[-10px] flex justify-start">
           <div className="absolute inset-0 bg-gradient-to-br from-rose-600 to-transparet rounded-full w-16 h-16 top-[-30px] left-[16px]  z-0" aria-hidden="true" />
@@ -54,9 +54,9 @@ const Services = () => {
   )
 
   return (
-    <section className="">
+    <section className="lg:justify-center px-10 sm:px-4">
       <h2 className="text-5xl font-bold text-white font-title text-center mb-20">Serviços</h2>
-      <div className="flex flex-row gap-8 justify-center">
+      <div className="flex flex-row gap-8 justify-center lg:flex-col lg:items-center">
         {services.map((service, index) => (
           <ServiceCard key={index} service={service} />
         ))}

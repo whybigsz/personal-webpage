@@ -54,7 +54,7 @@ const ContactForm = () => {
             className="w-full bg-zinc-800 text-white  rounded-[24px] min-h-[150px] p-[2rem]"
           />
         </div>
-        <Button type="submit" className="w-full rounded-[24px] hover:scale-105 hover:bg-black/20  bg-rose-500 p-6 my-2 ">
+        <Button type="submit" className="w-full rounded-[16px] hover:scale-105 hover:bg-black/20  bg-rose-500 p-6 my-2 ">
           Enviar Mensagem
         </Button>
       </form>

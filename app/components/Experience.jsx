@@ -125,7 +125,7 @@ const Experience = () => {
   }, [inView, controls]);
 
   return (
-    <section className="mt-16 px-6 pt-4 relative lg:px-32 md:px-20 w-full md:min-h-screen md:pt-8 pb-10 flex flex-col items-center">
+    <section className="mt-16 pt-4 relative w-full md:min-h-screen md:pt-8 pb-10 flex flex-col items-center">
       <div className="mb-2 lg:mb-8 text-center w-full max-w-screen-2xl">
         <h1 className="text-5xl text-white lg:text-3xl font-bold w-full">Experiência e Trabalho</h1>
       </div>
@@ -134,7 +134,7 @@ const Experience = () => {
         {/* Timeline Line */}
         <motion.div
           ref={ref}
-          className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-br from-rose-600 to-transparent"
+          className="absolute lg:left-[5%] left-1/2 transform -translate-x-1/2 w-2 bg-gradient-to-br from-rose-600 to-transparent"
           style={{
             height: 'var(--timeline-height)',
             transformOrigin: 'top',
@@ -147,22 +147,22 @@ const Experience = () => {
         {experiences.map((exp, index) => (
           <div
             key={index}
-            className={`flex w-full ${index % 2 === 0 ? 'justify-end pr-4' : 'justify-start pl-4'}`}
+            className="flex w-full items-center relative"
           >
-            <Card className={`w-[48%] md:w-[45%] mt-12 bg-zinc-800 border-0 rounded-[24px] text-white p-8 shadow-lg relative ${index % 2 === 0 ? 'mr-auto' : 'ml-auto'}`}>
-              {/* Timeline Point */}
-              <motion.div
-                className={`absolute top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-rose-800 ${index % 2 === 0 ? 'left-full ml-[1.6rem]' : 'right-full mr-[1.5rem]'}`}
-                initial={{ scale: 0 }}
-                animate={{
-                  scale: timelineProgress > index / experiences.length ? 1 : 0,
-                  transition: { duration: 0.3 }
-                }}
-              />
+            {/* Timeline Point - Now absolutely positioned in the center */}
+            <motion.div
+              className={`absolute lg:left-[5%] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 ml-[-0.75rem]  rounded-full bg-rose-800 z-10`}
+              initial={{ scale: 0 }}
+              animate={{
+                scale: timelineProgress > index / experiences.length ? 1 : 0,
+                transition: { duration: 0.3 }
+              }}
+            />
+            <Card className={`w-[46.5%] lg:w-full mt-12 mb-10 bg-zinc-800 border-0 rounded-[24px] text-white p-8 shadow-lg relative lg:ml-24 ${index % 2 === 0 ? ' mr-auto' : ' ml-auto'}`}>
 
               {/* Arrow Indicator */}
               <motion.div
-                className={`absolute top-[54%] -translate-y-1/2 ${index % 2 === 0 ? 'left-full ml-[-0.75rem]' : 'right-full mr-[-0.75rem]'}`}
+                className={`absolute top-[54%] -translate-y-1/2  ${index % 2 === 0 ? 'lg:left-[-0.5rem] left-full ml-[-0.75rem]' : 'right-full mr-[-0.75rem]'}`}
                 initial={{ opacity: 0 }}
                 animate={{
                   opacity: timelineProgress > index / experiences.length ? 1 : 0,
@@ -170,7 +170,7 @@ const Experience = () => {
                 }}
               >
                 {index % 2 === 0 ? (
-                  <RiTriangleFill className="w-8 h-8 text-zinc-800  transform rotate-90" />
+                  <RiTriangleFill className="w-8 h-8 text-zinc-800  transform rotate-90 lg:-rotate-90" />
                 ) : (
                   <RiTriangleFill className="w-8 h-8 text-zinc-800 transform -rotate-90" />
                 )}
