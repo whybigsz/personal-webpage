@@ -16,7 +16,7 @@ const skills = [
   { id: '2', skillName: 'Design', amount: "80" },
 ];
 
-const SkillsList = () => {
+const SkillsList = ({ isFullHeight }) => {
   const { ref, inView } = useInView({
     threshold: 0.5,
     triggerOnce: false
@@ -27,12 +27,13 @@ const SkillsList = () => {
       {skills.map((skill) => (
         <li key={skill.skillName} className="relative flex bg-[#3e4555] mb-4 rounded-lg">
           <motion.div
-            className="flex flex-col h-8 bg-gradient-to-br from-rose-500 to-transparent"
+            className={`flex flex-col ${isFullHeight ? "h-8" : "h-6"} bg-gradient-to-br from-rose-500 to-transparent rounded-lg`}
             initial={{ width: 0 }}
             animate={{ width: inView ? `${skill.amount}%` : 0 }}
             transition={{ duration: 2 + Number(skill.id) / 10, ease: "easeInOut" }}
           />
-          <div className="absolute flex justify-center items-center border-2 border-white/30 bottom-0 top-0 left-0 px-2 w-65 h-30 text-base bg-rose-600 font-semibold text-white">
+          <div className="absolute flex rounded-lg justify-center items-center border-2 border-white/30
+          bottom-0 top-0 left-0 px-2 w-65 h-30 min-h-20 max-h-30 text-base bg-rose-600 font-semibold text-white">
             {skill.skillName}
           </div>
         </li>
@@ -42,33 +43,131 @@ const SkillsList = () => {
 };
 
 const HeroSection = () => {
+  const [heightRatio, setHeightRatio] = useState(1);
+  const [isFullHeight, setIsFullHeight] = useState(false);
   const [tab, setTab] = useState("habilidades");
+  const containerRef = useRef(null);
 
   const handleTabChange = (id) => {
     setTab(id);
   };
 
+  // Calculate dimensions based on height ratio
+  const calculateDimension = (min, max) => {
+    return min + (max - min) * heightRatio;
+  };
+
+  // Image container dimensions
+  const imageWidth = Math.round(calculateDimension(240, 220));
+  const imageHeight = Math.round(calculateDimension(140, 210));
+
+  // Margins and spacings
+  const topMargin = Math.round(calculateDimension(3, 6));
+  const contentGap = Math.round(calculateDimension(6, 10));
+  const footerPadding = Math.round(calculateDimension(0, 4));
+
+  const logoScale = 1 + (heightRatio * 0.5);
+
   const TAB_DATA = [
     {
       title: "Habilidades",
       id: "habilidades",
-      content: <SkillsList />
+      content: <SkillsList isFullHeight={isFullHeight} />
     },
     {
       title: "Educação",
       id: "educação",
       content: (
-        <ul className="pl-2 text-white">
-          <li className="pb-1">📌 Escola Secundária da Mealhada</li>
-          <li>📌 Instituto Politécnico de Engenharia de Coimbra</li>
+        <ul className="w-full space-y-4 text-sm md:text-base lg:text-lg text-white">
+          <li className="flex items-center gap-2">
+            <span className="shrink-0">📌</span>
+            <span className="flex-1">Escola Secundária da Mealhada</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="shrink-0">📌</span>
+            <span className="flex-1">Instituto Politécnico de Engenharia de Coimbra</span>
+          </li>
         </ul>
       )
     }
   ];
 
+  useEffect(() => {
+    const checkHeight = () => {
+      if (containerRef.current) {
+        const height = containerRef.current.offsetHeight;
+        setIsFullHeight(height >= 800);
+
+        const height2 = containerRef.current.offsetHeight;
+        const minHeight = 650;
+        const maxHeight = 800;
+
+        // Calculate ratio between 0 and 1
+        const newRatio = Math.max(0, Math.min(1,
+          (height2 - minHeight) / (maxHeight - minHeight)
+        ));
+
+        setHeightRatio(newRatio);
+      }
+    };
+
+    // Check height initially
+    checkHeight();
+
+    // Debounced resize handler
+    let timeoutId;
+    const handleResize = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(checkHeight, 50);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const imageContainerStyle = {
+    width: `${imageWidth}px`,
+    height: `${imageHeight}px`,
+  };
+
+  const logoStyle = {
+    transform: `scale(${logoScale})`,
+    marginTop: `${topMargin * 4}px`,
+    transition: 'all 0.3s ease-in-out'
+  };
+
+  const footerStyle = {
+    paddingBottom: `${footerPadding}rem`,
+    marginTop: heightRatio < 0.5 ? '-2rem' : '0',
+    transition: 'all 0.3s ease-in-out'
+  };
+
+  const imageContainerClass = `relative
+    ${isFullHeight
+      ? "w-[220px] h-[210px]"
+      : "min-w-[240px] min-h-[140px]"}
+    bg-gradient-to-br from-rose-600 to-transparent overflow-hidden rounded-[16px]`;
+
+  const contentSpacingClass = `flex flex-col gap-10 transition-all duration-300 ease-in-out
+    ${!isFullHeight ? "mx-6 !p-0" : ""}`;
+
+  const socialIconsContainerClass = `flex xl:flex-col justify-center xl:items-center transition-all duration-300 ease-in-out
+    ${isFullHeight ? "mt-6" : "mt-3"}`;
+
+  const logoContainerClass = `absolute inset-0 flex items-center justify-center transition-all duration-300 ease-in-out`;
+
+  const cardFooterClass = `flex justify-center flex-col gap-4 xl:hidden transition-all duration-300 ease-in-out
+    ${isFullHeight ? "py-4" : "mt-[-2rem]"}`;
+
+  const cardDescriptionClass = `text-center text-white transition-all duration-300 ease-in-out
+    ${isFullHeight ? "my-4" : "my-0"}`;
+
   return (
 
-    <div className="relative flex flex-wrap h-[800px] w-full items-center justify-center gap-8">
+    <div ref={containerRef} className="relative flex flex-wrap h-[80vh] min-h-[650px] max-h-[800px] w-full items-center justify-center gap-8">
 
       {/* 1st Column */}
       <div className="flex flex-col h-full w-1/4 gap-8 xl:hidden">
@@ -81,8 +180,8 @@ const HeroSection = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="flex flex-col items-center space-y-4">
-              <div className="relative w-[220px] h-[210px] bg-gradient-to-br from-rose-600 to-transparet overflow-hidden rounded-[16px]">
-                <div className="absolute inset-0 flex items-center justify-center ">
+              <div className={imageContainerClass} style={imageContainerStyle}>
+                <div className="absolute inset-0 flex items-center justify-center">
                   <Image
                     src="/images/logo2.png"
                     alt="Profile picture"
@@ -107,19 +206,19 @@ const HeroSection = () => {
           <Card className="w-full h-full relative bg-zinc-800 border-0 rounded-[24px]">
             <button
               onClick={() => handleTabChange(tab === "habilidades" ? "educação" : "habilidades")}
-              className="absolute top-10 right-8 text-rose-500 hover:text-rose-700"
+              className={`absolute ${isFullHeight ? "top-10 right-8" : "top-6 right-6"} text-rose-500 hover:text-rose-700`}
             >
               {tab === "habilidades" ? <RiBook2Fill size={24} /> : <RiBarChartHorizontalLine size={24} />}
             </button>
 
             <CardHeader className="flex justify-center">
-              <CardTitle className="text-white flex text-left p-4">
+              <CardTitle className={`text-white flex text-left`}>
                 <div className="text-2xl font-semibold">
                   {TAB_DATA.find((t) => t.id === tab)?.title}
                 </div>
               </CardTitle>
             </CardHeader>
-            <CardContent className="flex flex-col gap-10">
+            <CardContent className={contentSpacingClass}>
               {TAB_DATA.find((t) => t.id === tab)?.content}
             </CardContent>
           </Card>
@@ -220,8 +319,8 @@ const HeroSection = () => {
               Sou Software Developer, formado em Engenharia Informática pelo ISEC, com experiência em desenvolvimento web front-end e back-end.
             </CardDescription>
           </CardHeader>
-          <CardContent className="flex flex-col items-center space-y-8 mt-6">
-            <div className="flex xl:flex-col justify-center xl:items-center mt-6 xl:mt-0 mb-0">
+          <CardContent className={`flex flex-col items-center  ${isFullHeight ? "space-y-8 mt-6 " : "space-y-0 !p-0 mt-0"} `}>
+            <div className={socialIconsContainerClass}>
               <div className="flex space-x-4">
                 <Link href="/" target='_blank'>
                   <i title='Linkedin' className="ri-linkedin-box-line p-2 xl:p-1 hover:bg-rose-500 hover:text-white text-black/80 bg-white rounded-full text-4xl"></i>
@@ -234,7 +333,7 @@ const HeroSection = () => {
                 </Link>
               </div>
               <div className='hidden xl:flex flex-col items-center m-0'>
-                <CardDescription className=" text-center text-white my-4">
+                <CardDescription className={cardDescriptionClass}>
                   Envie um e-mail para descobrir como posso ajudá-lo a alcançar seus objetivos. Obrigado!
                 </CardDescription>
                 <Button title='Contactar' className="hidden xl:flex w-full max-w-xs hover:scale-105 hover:bg-black/50  bg-rose-500  items-center p-6 my-2 rounded-2xl text-xl text-white font-semibold">
@@ -244,7 +343,7 @@ const HeroSection = () => {
 
             </div>
             <div className="relative w-64 h-64 bg-transparent overflow-hidden xl:hidden">
-              <div className="absolute inset-0 flex items-center justify-center mt-4 scale-150 ">
+              <div className={logoContainerClass} style={logoStyle}>
                 <div className="opacity-60 ">
                   <Logo></Logo>
                 </div>
@@ -252,7 +351,7 @@ const HeroSection = () => {
             </div>
           </CardContent>
 
-          <CardFooter className="flex justify-center flex-col gap-4 xl:hidden py-4">
+          <CardFooter className={cardFooterClass} style={footerStyle}>
             <CardDescription className="text-left text-white mt-4">
               Envie um e-mail para descobrir como posso ajudá-lo a alcançar seus objetivos. Obrigado!
             </CardDescription>
