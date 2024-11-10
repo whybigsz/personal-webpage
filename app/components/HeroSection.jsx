@@ -264,7 +264,7 @@ const HeroSection = () => {
       </div>
 
       {/* 3º Col in display < than xl*/}
-      <div className="hidden w-full h-1/3 xl:flex mx-[7.9vw] sm:min-w-full">
+      <div className="hidden w-full h-1/3 xl:flex mx-[7.5vw] sm:min-w-full">
         <Card className="w-full bg-zinc-800 border-0 rounded-[24px] h-[800px] xl:max-h-80 xl:space-y-2 ">
           <CardHeader className='xl:items-center'>
             <CardTitle className='text-white text-2xl text-left xl:flex '>Ricardo Ferreira - <p className='font-bold'> Web Developer</p></CardTitle>

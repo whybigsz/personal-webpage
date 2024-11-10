@@ -73,7 +73,7 @@ const Projects = () => {
   )
 
   return (
-    <section className="py-20 px-10 sm:px-4 lg:justify-center ">
+    <section className="py-20 px-10 sm:px-4 lg:justify-center xl:mt-[20rem] sm:mt-[40rem">
       <h2 className="text-5xl font-bold text-white font-title text-center mb-16">Projetos Recentes</h2>
       <div className="flex flex-row lg:flex-col lg:items-center  gap-8 justify-center">
         {projects.map((project, index) => (
