@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import Image from 'next/image';
 import 'remixicon/fonts/remixicon.css';
 import { RiLink } from 'react-icons/ri';
+import { motion } from 'framer-motion'
 
 
 
@@ -44,36 +45,42 @@ const Projects = () => {
   ]
 
   const ProjectCard = ({ project }) => (
-    <Card className="flex flex-col w-full max-w-lg p-3 lg:max-w-none  bg-zinc-800 border-0 rounded-[24px]">
-      <CardHeader className="">
-        <Image
-          src={project.image}
-          alt={project.title}
-          width={300}
-          height={400}
-          className="rounded-[16px] object-cover w-full h-64"
-        />
-      </CardHeader>
-      <CardContent className="flex-grow">
-        <CardTitle className="text-xl text-white mb-2">{project.title}</CardTitle>
-        <p className="text-muted-foreground mb-4">{project.description}</p>
-        <div className="flex flex-wrap gap-2 mb-4 bg-black/50 p-2 rounded-3xl w-fit">
-          {project.skills.map((skill, index) => (
-            <span key={index} className=" text-xs p-1 rounded flex items-center">
-              {skillIconMap[skill] || skill}
-            </span>
 
-          ))}
-        </div>
-      </CardContent>
-      <CardFooter>
-        <a href={project.link} className='text-white text-lg font-semibold flex gap-2' target="_blank" rel="noopener noreferrer"><RiLink size={24} /> Visit Project</a>
-      </CardFooter>
-    </Card>
+    <motion.div className='w-full'
+      initial={{ y: '-5%', opacity: 0 }}
+      whileInView={{ y: '0%', opacity: 1 }}
+      viewport={{ once: true, amount: 0.5 }}
+      transition={{ duration: 1, delay: 0.5, ease: 'easeInOut' }}>
+      <Card className="flex flex-col w-full max-w-lg p-3 lg:max-w-full h-full bg-zinc-800 border-0 rounded-[24px]">
+        <CardHeader className="">
+          <Image
+            src={project.image}
+            alt={project.title}
+            width={300}
+            height={400}
+            className="rounded-[16px] object-cover w-full h-64"
+          />
+        </CardHeader>
+        <CardContent className="flex-grow">
+          <CardTitle className="text-xl text-white mb-2">{project.title}</CardTitle>
+          <p className="text-muted-foreground mb-4">{project.description}</p>
+          <div className="flex flex-wrap gap-2 mb-4 bg-black/50 p-2 rounded-3xl w-fit">
+            {project.skills.map((skill, index) => (
+              <span key={index} className=" text-xs p-1 rounded flex items-center">
+                {skillIconMap[skill] || skill}
+              </span>
+            ))}
+          </div>
+        </CardContent>
+        <CardFooter>
+          <a href={project.link} className='text-white text-lg font-semibold flex gap-2' target="_blank" rel="noopener noreferrer"><RiLink size={24} /> Visit Project</a>
+        </CardFooter>
+      </Card>
+    </motion.div>
   )
 
   return (
-    <section className="py-20 px-10 sm:px-4 lg:justify-center xl:mt-[20rem] sm:mt-[40rem">
+    <section className="py-20 px-10 sm:px-4 sm:mt-[40rem] xl:pt-[30rem] xl:pb-[5rem] projects">
       <h2 className="text-5xl font-bold text-white font-title text-center mb-16">Projetos Recentes</h2>
       <div className="flex flex-row lg:flex-col lg:items-center  gap-8 justify-center">
         {projects.map((project, index) => (

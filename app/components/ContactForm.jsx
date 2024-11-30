@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import React, { useRef } from 'react';
 import emailjs from '@emailjs/browser';
+import { motion } from 'framer-motion'
 
 const ContactForm = () => {
 
@@ -20,9 +21,12 @@ const ContactForm = () => {
       });
   };
 
-
   return (
-    <div className="w-full max-w-4xl mx-auto p-4 flex flex-col items-center mb-16">
+    <motion.div className="w-full max-w-4xl mx-auto p-4 flex flex-col items-center mb-16"
+      initial={{ y: '-5%', opacity: 0 }}
+      whileInView={{ y: '0%', opacity: 1 }}
+      viewport={{ once: true, amount: 0.5 }}
+      transition={{ duration: 1, delay: 0.5, ease: 'easeInOut' }}>
       <h2 className="text-5xl text-white font-bold my-16">Contactar</h2>
       <form ref={form} onSubmit={sendEmail} id='contact-form' className="space-y-8 w-full">
         <div className="grid grid-cols-2 md:grid-cols-1 gap-8">
@@ -58,7 +62,7 @@ const ContactForm = () => {
           Enviar Mensagem
         </Button>
       </form>
-    </div>
+    </motion.div>
   );
 };
 

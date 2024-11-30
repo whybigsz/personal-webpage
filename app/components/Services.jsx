@@ -4,6 +4,7 @@ import Image from 'next/image';
 import 'remixicon/fonts/remixicon.css';
 import { RiLink } from 'react-icons/ri';
 import { Code, Palette, Megaphone } from 'lucide-react';
+import { motion } from 'framer-motion'
 
 
 
@@ -37,20 +38,27 @@ const Services = () => {
   ]
 
   const ServiceCard = ({ service }) => (
-    <Card className="flex flex-col w-full max-w-lg lg:max-w-none p-6 bg-zinc-800 border-0 rounded-[24px]">
-      <CardHeader className="pb-4">
-        <div className="relative my-4 ml-[-10px] flex justify-start">
-          <div className="absolute inset-0 bg-gradient-to-br from-rose-600 to-transparet rounded-full w-16 h-16 top-[-30px] left-[16px]  z-0" aria-hidden="true" />
-          <div className="relative z-10 text-white  ">
-            {serviceIconMap[service.icon]}
+    <motion.div
+      className='w-full'
+      initial={{ y: '-5%', opacity: 0 }}
+      whileInView={{ y: '0%', opacity: 1 }}
+      viewport={{ once: true, amount: 0.5 }}
+      transition={{ duration: 1, delay: 0.5, ease: 'easeInOut' }}>
+      <Card className="flex flex-col w-full max-w-lg lg:max-w-none p-6 h-full bg-zinc-800 border-0 rounded-[24px]">
+        <CardHeader className="pb-4">
+          <div className="relative my-4 ml-[-10px] flex justify-start">
+            <div className="absolute inset-0 bg-gradient-to-br from-rose-600 to-transparet rounded-full w-16 h-16 top-[-30px] left-[16px]  z-0" aria-hidden="true" />
+            <div className="relative z-10 text-white  ">
+              {serviceIconMap[service.icon]}
+            </div>
           </div>
-        </div>
-      </CardHeader>
-      <CardContent className="flex-grow text-start">
-        <CardTitle className="text-xl text-white mb-2">{service.title}</CardTitle>
-        <p className="text-muted-foreground ">{service.description}</p>
-      </CardContent>
-    </Card>
+        </CardHeader>
+        <CardContent className="flex-grow text-start">
+          <CardTitle className="text-xl text-white mb-2">{service.title}</CardTitle>
+          <p className="text-muted-foreground ">{service.description}</p>
+        </CardContent>
+      </Card>
+    </motion.div>
   )
 
   return (

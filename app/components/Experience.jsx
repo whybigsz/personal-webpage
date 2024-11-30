@@ -5,7 +5,6 @@ import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 
-
 const Experience = () => {
   const experiences = [
     {
@@ -134,7 +133,7 @@ const Experience = () => {
         {/* Timeline Line */}
         <motion.div
           ref={ref}
-          className="absolute lg:left-[5%] left-1/2 transform -translate-x-1/2 w-2 bg-gradient-to-br from-rose-600 to-transparent"
+          className="absolute timeline lg:left-[5%] left-1/2 transform -translate-x-1/2 w-2 bg-gradient-to-br from-rose-600 to-transparent"
           style={{
             height: 'var(--timeline-height)',
             transformOrigin: 'top',
@@ -151,47 +150,54 @@ const Experience = () => {
           >
             {/* Timeline Point - Now absolutely positioned in the center */}
             <motion.div
-              className={`absolute lg:left-[5%] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 ml-[-0.75rem]  rounded-full bg-rose-800 z-10`}
+              className={`absolute timeline-point lg:left-[5%] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 ml-[-0.75rem] flex items-center justify-center rounded-full bg-rose-800 z-10`}
               initial={{ scale: 0 }}
               animate={{
                 scale: timelineProgress > index / experiences.length ? 1 : 0,
                 transition: { duration: 0.3 }
               }}
-            />
-            <Card className={`w-[46.5%] lg:w-full mt-12 mb-10 bg-zinc-800 border-0 rounded-[24px] text-white p-8 shadow-lg relative lg:ml-24 ${index % 2 === 0 ? ' mr-auto' : ' ml-auto'}`}>
-
-              {/* Arrow Indicator */}
-              <motion.div
-                className={`absolute top-[54%] -translate-y-1/2  ${index % 2 === 0 ? 'lg:left-[-0.5rem] left-full ml-[-0.75rem]' : 'right-full mr-[-0.75rem]'}`}
-                initial={{ opacity: 0 }}
-                animate={{
-                  opacity: timelineProgress > index / experiences.length ? 1 : 0,
-                  transition: { duration: 0.3 }
-                }}
-              >
-                {index % 2 === 0 ? (
-                  <RiTriangleFill className="w-8 h-8 text-zinc-800  transform rotate-90 lg:-rotate-90" />
-                ) : (
-                  <RiTriangleFill className="w-8 h-8 text-zinc-800 transform -rotate-90" />
-                )}
-              </motion.div>
-
-              <CardHeader>
-                <CardTitle>{exp.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2">
-                <p className="font-medium">{exp.role}</p>
-                <p className="text-sm text-muted-foreground">{exp.date}</p>
-                <p className="py-4">{exp.description.join(", ")}</p>
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {exp.skills.map((skill, skillIndex) => (
-                    <span key={skillIndex} className="inline-flex items-center rounded-full bg-gradient-to-br from-rose-600 to-transparent px-3 py-1 text-xs font-medium text-rose-200">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+            >
+              <i className="ri-star-fill text-white me-[2px]"></i>
+            </motion.div>
+            <motion.div className='w-full lg:w-3/4'
+              initial={{ x: '10%', opacity: 0 }}
+              whileInView={{ x: '0%', opacity: 1 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 1, delay: 0, ease: 'easeInOut' }}
+            >
+              <Card className={`w-[46.5%] lg:w-full mt-12 mb-10 bg-zinc-800 border-0 rounded-[24px] text-white p-8 shadow-lg relative experience1 timeline-card lg:ml-24- ${index % 2 === 0 ? ' mr-auto' : ' ml-auto'}`}>
+                {/* Arrow Indicator */}
+                <motion.div
+                  className={`absolute top-[54%] -translate-y-1/2  ${index % 2 === 0 ? ' lg:left-[-0.5rem] left-full ml-[-0.75rem]' : ' right-full mr-[-0.75rem]'}`}
+                  initial={{ opacity: 0 }}
+                  animate={{
+                    opacity: timelineProgress > index / experiences.length ? 1 : 0,
+                    transition: { duration: 0.3 }
+                  }}
+                >
+                  {index % 2 === 0 ? (
+                    <RiTriangleFill className="w-8 h-8 text-zinc-800  transform rotate-90 lg:-rotate-90" />
+                  ) : (
+                    <RiTriangleFill className="w-8 h-8 text-zinc-800 transform -rotate-90" />
+                  )}
+                </motion.div>
+                <CardHeader>
+                  <CardTitle>{exp.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-2">
+                  <p className="font-medium">{exp.role}</p>
+                  <p className="text-sm text-muted-foreground">{exp.date}</p>
+                  <p className="py-4">{exp.description.join(", ")}</p>
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    {exp.skills.map((skill, skillIndex) => (
+                      <span key={skillIndex} className="inline-flex items-center rounded-full bg-gradient-to-br from-rose-600 to-transparent px-3 py-1 text-xs font-medium text-rose-200">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
           </div>
         ))}
       </div>
