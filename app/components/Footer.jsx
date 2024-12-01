@@ -51,7 +51,7 @@ const Footer = () => {
               <div className="flex space-x-4">
                 <Tooltip delayDuration={300}>
                   <TooltipTrigger asChild>
-                    <Link href="/" target='_blank'>
+                    <Link href="https://www.linkedin.com/in/ricardo-connect/" target='_blank'>
                       <i title='Linkedin' className="ri-linkedin-box-line p-2 bg-rose-600 text-white hover:bg-black/50 rounded-full text-2xl"></i>
                     </Link>
                   </TooltipTrigger>
@@ -61,7 +61,7 @@ const Footer = () => {
                 </Tooltip>
                 <Tooltip delayDuration={300}>
                   <TooltipTrigger asChild>
-                    <Link href="/" target='_blank'>
+                    <Link href="https://github.com/whybigsz" target='_blank'>
                       <i title='Github' className="ri-github-line p-2 bg-rose-600 text-white hover:bg-black/50 rounded-full text-2xl"></i>
                     </Link>
                   </TooltipTrigger>
@@ -71,7 +71,7 @@ const Footer = () => {
                 </Tooltip>
                 <Tooltip delayDuration={300}>
                   <TooltipTrigger asChild>
-                    <Link href="/" target='_blank'>
+                    <Link href="https://www.instagram.com/ricardo_is.ferreira/" target='_blank'>
                       <i title='Instagram' className="ri-instagram-line p-2 bg-rose-600 text-white hover:bg-black/50 rounded-full text-2xl"></i>
                     </Link>
                   </TooltipTrigger>
@@ -128,7 +128,7 @@ const Footer = () => {
             <div className="flex space-x-4">
               <Tooltip delayDuration={300}>
                 <TooltipTrigger asChild>
-                  <Link href="/" target='_blank'>
+                  <Link href="https://www.linkedin.com/in/ricardo-connect/" target='_blank'>
                     <i title='Linkedin' className="ri-linkedin-box-line p-2 bg-rose-600 text-white hover:bg-black/50 rounded-full text-2xl"></i>
                   </Link>
                 </TooltipTrigger>
@@ -138,7 +138,7 @@ const Footer = () => {
               </Tooltip>
               <Tooltip delayDuration={300}>
                 <TooltipTrigger asChild>
-                  <Link href="/" target='_blank'>
+                  <Link href="https://github.com/whybigsz" target='_blank'>
                     <i title='Github' className="ri-github-line p-2 bg-rose-600 text-white hover:bg-black/50 rounded-full text-2xl"></i>
                   </Link>
                 </TooltipTrigger>
@@ -148,7 +148,7 @@ const Footer = () => {
               </Tooltip>
               <Tooltip delayDuration={300}>
                 <TooltipTrigger asChild>
-                  <Link href="/" target='_blank'>
+                  <Link href="https://www.instagram.com/ricardo_is.ferreira/" target='_blank'>
                     <i title='Instagram' className="ri-instagram-line p-2 bg-rose-600 text-white hover:bg-black/50 rounded-full text-2xl"></i>
                   </Link>
                 </TooltipTrigger>

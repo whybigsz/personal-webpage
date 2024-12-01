@@ -281,11 +281,11 @@ const HeroSection = () => {
         </Card>
       </motion.div>
 
-      {/* 1º Col in display < than xl*/}
+      {/* 2º Col in display < than xl*/}
       <motion.div
         className='hidden flex-col w-1/4 h-full xl:flex xl:w-[36vw] sm:min-w-full sm:items-center gap-8 '
-        initial={{ x: '10%', opacity: 0 }}
-        whileInView={{ x: '0%', opacity: 1 }}
+        initial={{ y: '10%', opacity: 0 }}
+        whileInView={{ y: '0%', opacity: 1 }}
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 1, ease: 'easeInOut', delay: 0.5 }}
       >
@@ -459,17 +459,42 @@ const HeroSection = () => {
           </CardHeader>
           <CardContent className="flex flex-col items-center space-y-6 mt-2">
             <div className="flex xl:flex-col justify-center xl:items-center mt-6 xl:mt-0 mb-0">
-              <div className="flex space-x-4">
-                <Link href="/" target='_blank'>
-                  <i title='Linkedin' className="ri-linkedin-box-line p-2 xl:p-1 bg-white rounded-full text-4xl"></i>
-                </Link>
-                <Link href="/" target='_blank'>
-                  <i title='Github' className="ri-github-line p-2 xl:p-1 bg-white rounded-full text-4xl"></i>
-                </Link>
-                <Link href="/" target='_blank'>
-                  <i title='Instagram' className="ri-instagram-line p-2 xl:p-1  bg-white rounded-full text-4xl"></i>
-                </Link>
-              </div>
+              <TooltipProvider>
+                <div className="flex space-x-4">
+                  <Tooltip delayDuration={300}>
+                    <TooltipTrigger asChild>
+                      <Link href="https://www.linkedin.com/in/ricardo-connect/" target='_blank' className="block">
+                        <i className="ri-linkedin-box-line p-2 xl:p-1 hover:bg-rose-500 hover:text-white text-black/80 bg-white rounded-full text-4xl"></i>
+                      </Link>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" align="center" className="bg-gray-800 text-white px-2 py-1 text-sm">
+                      <p>LinkedIn</p>
+                    </TooltipContent>
+                  </Tooltip>
+
+                  <Tooltip delayDuration={300}>
+                    <TooltipTrigger asChild>
+                      <Link href="https://github.com/whybigsz" target='_blank' className="block">
+                        <i className="ri-github-line p-2 xl:p-1 hover:bg-rose-500 hover:text-white text-black/80 bg-white rounded-full text-4xl"></i>
+                      </Link>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" align="end" className="bg-gray-800 text-white px-2 py-1 text-sm">
+                      <p>GitHub</p>
+                    </TooltipContent>
+                  </Tooltip>
+
+                  <Tooltip delayDuration={300}>
+                    <TooltipTrigger asChild>
+                      <Link href="https://www.instagram.com/ricardo_is.ferreira/" target='_blank' className="block">
+                        <i className="ri-instagram-line p-2 xl:p-1 hover:bg-rose-500 hover:text-white text-black/80 bg-white rounded-full text-4xl"></i>
+                      </Link>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" align="end" className="bg-gray-800 text-white px-2 py-1 text-sm">
+                      <p>Instagram</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
+              </TooltipProvider>
               <div className='hidden xl:flex flex-col items-center m-0'>
                 <CardDescription className=" text-center text-white my-4">
                   Envie um e-mail para descobrir como posso ajudá-lo a alcançar seus objetivos. Obrigado!

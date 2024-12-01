@@ -2,7 +2,7 @@ import { Home, Folder, FileEdit, Award, Send } from "lucide-react";
 import useDetectKeyboardOpen from "use-detect-keyboard-open";
 import { Link as ScrollLink, scroller } from "react-scroll";
 import React, { useState, useEffect, useCallback } from "react";
-import { usePathname } from "next/navigation";
+import { useMediaQuery } from 'react-responsive';
 
 export const navData = [
   { name: "Início", path: "home", icon: Home },
@@ -13,10 +13,9 @@ export const navData = [
 ];
 
 const Nav = () => {
-  const pathname = usePathname();
   const isKeyboardOpen = useDetectKeyboardOpen();
   const [activeSection, setActiveSection] = useState("home");
-
+  const isXlDisplay = useMediaQuery({ query: '(max-width: 1279px)' });
   // Improved section tracking using IntersectionObserver
   const updateActiveSection = useCallback(() => {
     const sections = navData.map((link) => document.getElementById(link.path));
@@ -106,13 +105,13 @@ const Nav = () => {
               to={link.path}
               spy={true}
               smooth={true}
-              offset={-70}
+              offset={link.path === "projects" && isXlDisplay ? 350 : -70}
               duration={500}
               onClick={() => setActiveSection(link.path)}
               className={`text-white relative flex items-center justify-center w-10 h-10 text-3xl group hover:text-white
                 transition-all duration-300 cursor-pointer`}
             >
-              <div className="absolute pr-14 right-0 hidden group-hover:flex">
+              <div className="absolute pr-14 right-0 hidden sm:group-hover:hidden group-hover:block">
                 <div className="bg-rose-600 bg-opacity-70 text-white items-center p-1 rounded-md">
                   <div className="xl:hidden text-[12px] leading-none font-bold capitalize">
                     {link.name}
