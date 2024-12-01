@@ -5,9 +5,10 @@ import { Textarea } from "@/components/ui/textarea"
 import React, { useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import { motion } from 'framer-motion'
+import { useToast } from '@/hooks/use-toast';
 
 const ContactForm = () => {
-
+  const { toast } = useToast()
   const form = useRef();
 
   const sendEmail = (e) => {
@@ -15,7 +16,10 @@ const ContactForm = () => {
 
     emailjs.sendForm('service_x642q28', 'template_49yo6ir', form.current, '4Ore9w28disZ5L4Cx')
       .then((result) => {
-        console.log('SUCCESS!', result.text);
+        toast({
+          title: "Mensagem enviada com sucesso!",
+          description: "Obrigado pelo seu contato! Estamos ansiosos para ler a sua mensagem e entrar em contato em breve.",
+        })
       }, (error) => {
         console.log('FAILED...', error.text);
       });

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { Toaster } from '@/components/ui/toaster'
 <link
   href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
   rel="stylesheet"
@@ -21,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>
+      <Toaster />
     </html>
   )
 }
