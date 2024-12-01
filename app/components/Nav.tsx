@@ -105,7 +105,7 @@ const Nav = () => {
               to={link.path}
               spy={true}
               smooth={true}
-              offset={link.path === "projects" && isXlDisplay ? 350 : -70}
+              offset={link.path === "projects" && isXlDisplay ? 370 : -70}
               duration={500}
               onClick={() => setActiveSection(link.path)}
               className={`text-white relative flex items-center justify-center w-10 h-10 text-3xl group hover:text-white

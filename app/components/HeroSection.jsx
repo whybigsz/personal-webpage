@@ -11,6 +11,7 @@ import { RiBook2Fill, RiBarChartHorizontalLine } from 'react-icons/ri';
 import { useInView } from 'react-intersection-observer';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { Link as L } from "react-scroll"
+import { useMediaQuery } from 'react-responsive';
 
 const skills = [
   { id: '0', skillName: 'Front-End', amount: "90" },
@@ -49,7 +50,7 @@ const HeroSection = () => {
   const [isFullHeight, setIsFullHeight] = useState(false);
   const [tab, setTab] = useState("habilidades");
   const containerRef = useRef(null);
-
+  const isXlDisplay = useMediaQuery({ query: '(max-width: 1279px)' });
   const handleTabChange = (id) => {
     setTab(id);
   };
@@ -264,7 +265,8 @@ const HeroSection = () => {
               <h1 className="text-3xl font-bold xl:text-2xl text-white">Ricardo Ferreira</h1>
               <div className="flex space-x-4">
                 <L to="projects" spy={true}
-                  smooth={true} offset={0}
+                  smooth={true}
+                  offset={isXlDisplay ? 370 : 0}
                   delay={0.5}
                   duration={1000} title='Projetos' className="cursor-pointer w-32 bg-rose-500 hover:scale-105 flex items-center p-2 justify-center rounded-lg text-lg text-white font-semibold">
                   Projetos

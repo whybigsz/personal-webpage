@@ -2,8 +2,9 @@ import React from 'react'
 import Link from 'next/link'
 import { Link as L } from "react-scroll"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-
+import { useMediaQuery } from 'react-responsive';
 const Footer = () => {
+  const isXlDisplay = useMediaQuery({ query: '(max-width: 1279px)' });
   return (
     <footer className="py-8 md:mb-20">
       <div className="container mx-auto px-4">
@@ -29,6 +30,7 @@ const Footer = () => {
                       to={"projects"}
                       spy={true}
                       smooth={true}
+                      offset={isXlDisplay ? 370 : 0}
                       duration={500}
                       className="hover:underline cursor-pointer">
                       Projetos
@@ -108,6 +110,7 @@ const Footer = () => {
                   spy={true}
                   smooth={true}
                   duration={500}
+                  offset={isXlDisplay ? 370 : 0}
                   className="hover:underline cursor-pointer">
                   Projetos
                 </L>
