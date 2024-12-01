@@ -78,10 +78,6 @@ const Nav = () => {
     };
   }, [updateActiveSection]);
 
-  // Debug logging
-  useEffect(() => {
-    console.log("Current active section:", activeSection);
-  }, [activeSection]);
 
   const isActive = (path: string) => activeSection === path;
 

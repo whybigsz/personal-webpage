@@ -10,6 +10,7 @@ import SideBar from "./components/SideBar"
 import ContactForm from "./components/ContactForm"
 import Services from './components/Services';
 import Experience from './components/Experience';
+import { Toaster } from '@/components/ui/toaster'
 
 export default function Home() {
 
@@ -31,6 +32,7 @@ export default function Home() {
       </div>
 
       <Footer />
+      <Toaster />
     </div>
   );
 }

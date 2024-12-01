@@ -1,3 +1,4 @@
+"use client"
 import React, { useEffect, useRef, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { RiTriangleFill } from 'react-icons/ri';
@@ -187,7 +188,13 @@ const Experience = () => {
                 <CardContent className="space-y-2">
                   <p className="font-medium">{exp.role}</p>
                   <p className="text-sm text-muted-foreground">{exp.date}</p>
-                  <p className="py-4">{exp.description.join(", ")}</p>
+                  {/* <p className="py-4">
+                    <ul className="list-disc list-inside">
+                      {exp.description.map((item, itemIndex) => (
+                        <li key={itemIndex}>{item}</li>
+                      ))}
+                    </ul>
+                  </p> */}
                   <div className="flex flex-wrap gap-2 mt-4">
                     {exp.skills.map((skill, skillIndex) => (
                       <span key={skillIndex} className="inline-flex items-center rounded-full bg-gradient-to-br from-rose-600 to-transparent px-3 py-1 text-xs font-medium text-rose-200">
