@@ -9,6 +9,8 @@ import Logo from "./Logo"
 import { motion } from 'framer-motion'
 import { RiBook2Fill, RiBarChartHorizontalLine } from 'react-icons/ri';
 import { useInView } from 'react-intersection-observer';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import { Link as L } from "react-scroll"
 
 const skills = [
   { id: '0', skillName: 'Front-End', amount: "90" },
@@ -21,8 +23,6 @@ const SkillsList = ({ isFullHeight, heightRatio }) => {
     threshold: 0.5,
     triggerOnce: false
   });
-
-  console.log("skils isFullHeight " + isFullHeight, " heightRatio " + heightRatio);
 
   return (
     <ul ref={ref} className="relative pl-0 text-3xl">
@@ -80,7 +80,7 @@ const HeroSection = () => {
       title: "Educação",
       id: "educação",
       content: (
-        <ul className="w-full space-y-4 text-sm md:text-base lg:text-lg text-white">
+        <ul className="w-full space-y-4 text-sm lg:text-md text-white">
           <li className="flex items-center gap-2">
             <span className="shrink-0">📌</span>
             <span className="flex-1">Escola Secundária da Mealhada</span>
@@ -99,7 +99,6 @@ const HeroSection = () => {
       if (containerRef.current) {
         const height = containerRef.current.offsetHeight;
         setIsFullHeight(height >= 800);
-        console.log("height " + height, "IsFullHeight " + isFullHeight);
 
         const height2 = containerRef.current.offsetHeight;
         const minHeight = 650;
@@ -179,7 +178,7 @@ const HeroSection = () => {
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 1, ease: 'easeInOut', delay: 0.5 }}>
         <div className="flex h-2/3">
-          <Card className="max-w-sm h-full bg-zinc-800 border-0 rounded-[24px] ">
+          <Card className="max-w-sm h-full bg-zinc-800 border-0 rounded-[24px] content-center">
             <CardHeader className="flex items-center justify-center">
               <CardTitle className='text-white flex items-center'>
                 <div className='w-[26px] h-[26px] mr-2 rounded-full bg-red-600 ' />
@@ -211,12 +210,21 @@ const HeroSection = () => {
         </div>
         <div className="flex w-full h-1/3">
           <Card className="w-full h-full relative bg-zinc-800 border-0 rounded-[24px]">
-            <button
-              onClick={() => handleTabChange(tab === "habilidades" ? "educação" : "habilidades")}
-              className={`absolute top-7 right-7 text-rose-500 hover:text-rose-700`}
-            >
-              {tab === "habilidades" ? <RiBook2Fill size={24} /> : <RiBarChartHorizontalLine size={24} />}
-            </button>
+            <TooltipProvider delayDuration={200}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button
+                    onClick={() => handleTabChange(tab === "habilidades" ? "educação" : "habilidades")}
+                    className={`absolute top-7 right-7 text-rose-500 hover:text-rose-700`}
+                  >
+                    {tab === "habilidades" ? <RiBook2Fill size={24} /> : <RiBarChartHorizontalLine size={24} />}
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent sideOffset={5} className="bg-gray-800 text-white px-2 py-1 text-sm">
+                  {tab}
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
 
             <CardHeader className="flex justify-center">
               <CardTitle className={`text-white flex text-left`}>
@@ -255,12 +263,18 @@ const HeroSection = () => {
             <Card className="bg-white/30 xl:items-center  backdrop-blur-md p-6 shadow-lg h-[200px] rounded-[16px] flex flex-col justify-between xl:h-[140px]">
               <h1 className="text-3xl font-bold xl:text-2xl text-white">Ricardo Ferreira</h1>
               <div className="flex space-x-4">
-                <Button title='Projetos' className="w-32 bg-rose-500 hover:bg-black/80 flex items-center p-4 rounded-lg text-lg text-white font-semibold">
+                <L to="projects" spy={true}
+                  smooth={true} offset={0}
+                  delay={0.5}
+                  duration={1000} title='Projetos' className="cursor-pointer w-32 bg-rose-500 hover:scale-105 flex items-center p-2 justify-center rounded-lg text-lg text-white font-semibold">
                   Projetos
-                </Button>
-                <Button title='Serviços' variant="" className="w-32 text-lg">
+                </L>
+                <L to="services" spy={true}
+                  smooth={true} offset={0}
+                  delay={0.5}
+                  duration={1000} title='Serviços' variant="" className="cursor-pointer w-32 text-lg justify-center button hover:scale-105 bg-black/80 flex items-center p-2 rounded-lg text-white font-semibold">
                   Serviços
-                </Button>
+                </L>
               </div>
             </Card>
           </div>
@@ -269,14 +283,14 @@ const HeroSection = () => {
 
       {/* 1º Col in display < than xl*/}
       <motion.div
-        className='hidden flex-col w-1/4 h-full xl:flex xl:w-[36vw] sm:min-w-full sm:items-center gap-8'
+        className='hidden flex-col w-1/4 h-full xl:flex xl:w-[36vw] sm:min-w-full sm:items-center gap-8 '
         initial={{ x: '10%', opacity: 0 }}
         whileInView={{ x: '0%', opacity: 1 }}
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 1, ease: 'easeInOut', delay: 0.5 }}
       >
         <div className="flex h-2/3  sm:w-[90%] sm:h-3/4">
-          <Card className="w-full h-full bg-zinc-800 border-0 rounded-[24px] ">
+          <Card className="w-full h-full bg-zinc-800 border-0 rounded-[24px] content-center">
             <CardHeader className="flex items-center justify-center">
               <CardTitle className='text-white flex items-center'>
                 <div className='w-[26px] h-[26px] mr-2 rounded-full bg-red-600 ' />
@@ -331,59 +345,96 @@ const HeroSection = () => {
 
       {/* 3º Col */}
       <motion.div
-        className="flex flex-col w-1/4 h-full xl:hidden"
+        className="flex flex-col w-1/4 h-full xl:hidden "
         initial={{ x: '10%', opacity: 0 }}
         whileInView={{ x: '0%', opacity: 1 }}
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 1, delay: 1, ease: 'easeInOut' }}
       >
-        <Card className="w-full h-full bg-zinc-800 border-0 rounded-[24px] xl:max-h-80 xl:space-y-2 ">
-          <CardHeader className='xl:items-center'>
-            <CardTitle className='text-white text-2xl text-left xl:flex '>Ricardo Ferreira - <span className='font-bold'> Web Developer</span></CardTitle>
-            <CardDescription className="text-left text-white mt-2 xl:max-w-lg">
-              Sou Software Developer, formado em Engenharia Informática pelo ISEC, com experiência em desenvolvimento web front-end e back-end.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className={`flex flex-col items-center  ${heightRatio > 0.75 ? "space-y-8 mt-2 " : "space-y-0 !p-0 mt-0"} `}>
-            <div className={socialIconsContainerClass}>
-              <div className="flex space-x-4">
-                <Link href="/" target='_blank'>
-                  <i title='Linkedin' className="ri-linkedin-box-line p-2 xl:p-1 hover:bg-rose-500 hover:text-white text-black/80 bg-white rounded-full text-4xl"></i>
-                </Link>
-                <Link href="/" target='_blank'>
-                  <i title='Github' className="ri-github-line p-2 xl:p-1 hover:bg-rose-500 hover:text-white text-black/80 bg-white rounded-full text-4xl"></i>
-                </Link>
-                <Link href="/" target='_blank'>
-                  <i title='Instagram' className="ri-instagram-line p-2 xl:p-1 hover:bg-rose-500 hover:text-white text-black/80  bg-white rounded-full text-4xl"></i>
-                </Link>
-              </div>
-              <div className='hidden xl:flex flex-col items-center m-0'>
-                <CardDescription className={cardDescriptionClass}>
-                  Envie um e-mail para descobrir como posso ajudá-lo a alcançar seus objetivos. Obrigado!
-                </CardDescription>
-                <Button title='Contactar' className="hidden xl:flex w-full max-w-xs hover:scale-105 hover:bg-black/50  bg-rose-500  items-center p-6 my-2 rounded-2xl text-xl text-white font-semibold">
-                  Contactar
-                </Button>
-              </div>
+        <Card className="w-full h-full bg-zinc-800 border-0 rounded-[24px] xl:max-h-80 xl:space-y-2 flex flex-col justify-evenly">
+          <div>
+            <CardHeader className='xl:items-center'>
+              <CardTitle className='text-white text-2xl text-left xl:flex '>
+                <div>
+                  <p>Ricardo Ferreira</p>
+                  <p className='italic text-xl mb-2'>Web Developer</p>
+                </div>
+              </CardTitle>
+              <CardDescription className="text-left text-white mt-2 xl:max-w-lg">
+                Sou Software Developer, formado em Engenharia Informática pelo ISEC, com experiência em desenvolvimento web front-end e back-end.
+              </CardDescription>
+            </CardHeader>
+          </div>
+          <div>
+            <CardContent className={`flex flex-col items-center ${heightRatio > 0.75 ? "space-y-8 mt-2" : "space-y-0 !p-0 mt-0"}`}>
+              <div className={socialIconsContainerClass}>
+                <TooltipProvider>
+                  <div className="flex space-x-4">
+                    <Tooltip delayDuration={300}>
+                      <TooltipTrigger asChild>
+                        <Link href="https://www.linkedin.com/in/ricardo-connect/" target='_blank' className="block">
+                          <i className="ri-linkedin-box-line p-2 xl:p-1 hover:bg-rose-500 hover:text-white text-black/80 bg-white rounded-full text-4xl"></i>
+                        </Link>
+                      </TooltipTrigger>
+                      <TooltipContent side="top" align="center" className="bg-gray-800 text-white px-2 py-1 text-sm">
+                        <p>LinkedIn</p>
+                      </TooltipContent>
+                    </Tooltip>
 
-            </div>
-            <div className="relative w-64 h-64 bg-transparent overflow-hidden xl:hidden">
-              <div className={logoContainerClass} style={logoStyle}>
-                <div className="opacity-60 ">
-                  <Logo></Logo>
+                    <Tooltip delayDuration={300}>
+                      <TooltipTrigger asChild>
+                        <Link href="https://github.com/whybigsz" target='_blank' className="block">
+                          <i className="ri-github-line p-2 xl:p-1 hover:bg-rose-500 hover:text-white text-black/80 bg-white rounded-full text-4xl"></i>
+                        </Link>
+                      </TooltipTrigger>
+                      <TooltipContent side="top" align="end" className="bg-gray-800 text-white px-2 py-1 text-sm">
+                        <p>GitHub</p>
+                      </TooltipContent>
+                    </Tooltip>
+
+                    <Tooltip delayDuration={300}>
+                      <TooltipTrigger asChild>
+                        <Link href="https://www.instagram.com/ricardo_is.ferreira/" target='_blank' className="block">
+                          <i className="ri-instagram-line p-2 xl:p-1 hover:bg-rose-500 hover:text-white text-black/80 bg-white rounded-full text-4xl"></i>
+                        </Link>
+                      </TooltipTrigger>
+                      <TooltipContent side="top" align="end" className="bg-gray-800 text-white px-2 py-1 text-sm">
+                        <p>Instagram</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </div>
+                </TooltipProvider>
+                <div className='hidden xl:flex flex-col items-center m-0'>
+                  <CardDescription className={cardDescriptionClass}>
+                    Envie um e-mail para descobrir como posso ajudá-lo a alcançar seus objetivos. Obrigado!
+                  </CardDescription>
+                  <Button title='Contactar' className="hidden xl:flex w-full max-w-xs hover:scale-105 hover:bg-black/50 bg-rose-500 items-center p-6 my-2 rounded-2xl text-xl text-white font-semibold">
+                    Contactar
+                  </Button>
                 </div>
               </div>
-            </div>
-          </CardContent>
-
-          <CardFooter className={cardFooterClass} style={footerStyle}>
-            <CardDescription className="text-left text-white mt-4">
-              Envie um e-mail para descobrir como posso ajudá-lo a alcançar seus objetivos. Obrigado!
-            </CardDescription>
-            <Button title='Contactar' className="w-full max-w-xs hover:scale-105 hover:bg-black/50  bg-rose-500  flex items-center p-6 my-2 rounded-2xl text-xl text-white font-semibold">
-              Contactar
-            </Button>
-          </CardFooter>
+              <div className="relative w-64 h-64 bg-transparent overflow-hidden xl:hidden">
+                <div className={logoContainerClass} style={logoStyle}>
+                  <div className="opacity-60">
+                    <Logo></Logo>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+            <CardFooter className={cardFooterClass} style={footerStyle}>
+              <CardDescription className="text-left text-white mt-4">
+                Envie um e-mail para descobrir como posso ajudá-lo a alcançar seus objetivos. Obrigado!
+              </CardDescription>
+              <L to="contact" spy={true}
+                smooth={true} offset={0}
+                delay={0.5}
+                duration={1000}
+                title="Contactar"
+                className="cursor-pointer w-full max-w-xs hover:scale-105 hover:bg-black/50 bg-rose-500 flex items-center p-3 justify-center my-2 rounded-2xl text-xl text-white font-semibold">
+                Contactar
+              </L>
+            </CardFooter>
+          </div>
         </Card>
       </motion.div>
 
@@ -423,9 +474,14 @@ const HeroSection = () => {
                 <CardDescription className=" text-center text-white my-4">
                   Envie um e-mail para descobrir como posso ajudá-lo a alcançar seus objetivos. Obrigado!
                 </CardDescription>
-                <Button title='Contactar' className="hidden xl:flex w-full max-w-xs hover:scale-105 hover:bg-black/50  bg-rose-500  items-center p-6 my-2 rounded-2xl text-xl text-white font-semibold">
+                <L to="contact" spy={true}
+                  smooth={true} offset={0}
+                  delay={0.5}
+                  duration={1000}
+                  title="Contactar"
+                  className="w-full max-w-xs hover:scale-105 hover:bg-black/50 bg-rose-500 flex items-center p-2 justify-center my-2 rounded-2xl text-xl text-white font-semibold">
                   Contactar
-                </Button>
+                </L>
               </div>
 
             </div>

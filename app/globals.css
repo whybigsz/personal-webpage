@@ -28,10 +28,6 @@
 }
 
 @media (max-width: 639px) {
-  .projects {
-    padding-bottom: 5rem !important;
-  }
-
   .card-div3 {
     max-height: 460px !important;
   }
@@ -42,6 +38,12 @@
     margin-left: 4.5vw !important;
     margin-right: 4.5vw !important;
     margin-top: 0; /* mt-8 */
+  }
+}
+
+@media (min-width: 1279px) and (max-width: 2100px) {
+  .side-nav {
+    display: none;
   }
 }
 
@@ -61,6 +63,10 @@
     display: block !important;
     margin-left: 7.5vw;
     margin-right: 7.5vw;
+  }
+  .side-nav {
+    bottom: 2rem;
+    width: 90%;
   }
 }
 

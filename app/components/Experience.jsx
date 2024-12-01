@@ -124,7 +124,7 @@ const Experience = () => {
   }, [inView, controls]);
 
   return (
-    <section className="mt-16 pt-4 relative w-full md:min-h-screen md:pt-8 pb-10 flex flex-col items-center">
+    <section id='experience' className="mt-16 pt-4 relative w-full md:min-h-screen md:pt-8 pb-10 flex flex-col items-center">
       <div className="mb-2 lg:mb-8 text-center w-full max-w-screen-2xl">
         <h1 className="text-5xl text-white lg:text-3xl font-bold w-full">Experiência e Trabalho</h1>
       </div>

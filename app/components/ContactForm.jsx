@@ -22,7 +22,7 @@ const ContactForm = () => {
   };
 
   return (
-    <motion.div className="w-full max-w-4xl mx-auto p-4 flex flex-col items-center mb-16"
+    <motion.div id='contact' className="w-full max-w-4xl mx-auto p-4 flex flex-col items-center mb-16"
       initial={{ y: '-5%', opacity: 0 }}
       whileInView={{ y: '0%', opacity: 1 }}
       viewport={{ once: true, amount: 0.5 }}

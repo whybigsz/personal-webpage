@@ -1,9 +1,8 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import Image from 'next/image';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import 'remixicon/fonts/remixicon.css';
 import { RiLink } from 'react-icons/ri';
 import { motion } from 'framer-motion'
+import { MagnifyingGlassImage } from "./magnifying-glass-image"
 
 
 
@@ -53,12 +52,19 @@ const Projects = () => {
       transition={{ duration: 1, delay: 0.5, ease: 'easeInOut' }}>
       <Card className="flex flex-col w-full max-w-lg p-3 lg:max-w-full h-full bg-zinc-800 border-0 rounded-[24px]">
         <CardHeader className="">
-          <Image
+          {/* <Image
             src={project.image}
             alt={project.title}
             width={300}
             height={400}
             className="rounded-[16px] object-cover w-full h-64"
+          /> */}
+          <MagnifyingGlassImage
+            src={project.image}
+            alt={project.title}
+            width={300}
+            height={400}
+            magnification={1.5}
           />
         </CardHeader>
         <CardContent className="flex-grow">
@@ -80,7 +86,7 @@ const Projects = () => {
   )
 
   return (
-    <section className="py-20 px-10 sm:px-4 sm:mt-[40rem] xl:pt-[30rem] xl:pb-[5rem] projects">
+    <section id='projects' className="pt-20 px-10 sm:px-4 sm:mt-[40rem] xl:pt-[30rem]">
       <h2 className="text-5xl font-bold text-white font-title text-center mb-16">Projetos Recentes</h2>
       <div className="flex flex-row lg:flex-col lg:items-center  gap-8 justify-center">
         {projects.map((project, index) => (

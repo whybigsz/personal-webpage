@@ -15,10 +15,10 @@ export default function Home() {
 
 
   return (
-    <div id='/' className="relative flex flex-col min-h-screen bg-black/90 font-body">
+    <div id='home' className="relative flex flex-col min-h-screen bg-black/90 font-body">
       {/* <SideBar />
       <Navbar /> */}
-      {/* <Nav></Nav> */}
+      <Nav></Nav>
 
       <div className="container mx-auto mt-20 left-0 px-4 flex flex-col">
         <HeroSection />

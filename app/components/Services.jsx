@@ -62,7 +62,7 @@ const Services = () => {
   )
 
   return (
-    <section className="lg:justify-center px-10 sm:px-4">
+    <section id='services' className="lg:justify-center px-10 sm:px-4 pt-20">
       <h2 className="text-5xl font-bold text-white font-title text-center mb-20">Serviços</h2>
       <div className="flex flex-row gap-8 justify-center lg:flex-col lg:items-center">
         {services.map((service, index) => (
