@@ -161,8 +161,8 @@ const Experience = () => {
               <i className="ri-star-fill text-white me-[2px]"></i>
             </motion.div>
             <motion.div className='w-full lg:w-3/4'
-              initial={{ x: '10%', opacity: 0 }}
-              whileInView={{ x: '0%', opacity: 1 }}
+              initial={{ y: '10%', opacity: 0 }}
+              whileInView={{ y: '0%', opacity: 1 }}
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 1, delay: 0, ease: 'easeInOut' }}
             >

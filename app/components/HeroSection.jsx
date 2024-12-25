@@ -198,7 +198,7 @@ const HeroSection = () => {
                   />
                 </div>
               </div>
-              <CardDescription className="w-[100%] text-center text-white font-semibold text-md py-2">
+              <CardDescription className="w-[90%] text-center text-white font-semibold text-md py-2">
                 Apaixonado por criar aplicações web dinâmicas e interativas.
               </CardDescription>
             </CardContent>
@@ -288,7 +288,7 @@ const HeroSection = () => {
         className='hidden flex-col w-1/4 h-full xl:flex xl:w-[36vw] sm:min-w-full sm:items-center gap-8 '
         initial={{ y: '10%', opacity: 0 }}
         whileInView={{ y: '0%', opacity: 1 }}
-        viewport={{ once: true, amount: 0.5 }}
+        viewport={{ once: true, amount: 0.90  }}
         transition={{ duration: 1, ease: 'easeInOut', delay: 0.5 }}
       >
         <div className="flex h-2/3  sm:w-[90%] sm:h-3/4">
@@ -300,7 +300,7 @@ const HeroSection = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="flex flex-col items-center space-y-4">
-              <div className="relative w-[220px] h-[210px] img-div1 xl:w-[180px] xl:h-[170px] bg-gradient-to-br from-rose-600 to-transparet overflow-hidden rounded-[16px]">
+              <div className="relative w-[220px] h-[210px] img-div1 xl:w-[170px] xl:h-[150px] bg-gradient-to-br from-rose-600 to-transparet overflow-hidden rounded-[16px]">
                 <div className="absolute inset-0 flex items-center justify-center ">
                   <Image
                     src="/images/logo2.png"
@@ -311,7 +311,7 @@ const HeroSection = () => {
                   />
                 </div>
               </div>
-              <CardDescription className="w-[100%] text-center text-white font-semibold text-md xl:w-[86%]  ">
+              <CardDescription className="w-[90%] text-center text-white font-semibold text-md md:w-[110%]">
                 Apaixonado por criar aplicações web dinâmicas e interativas.
               </CardDescription>
             </CardContent>

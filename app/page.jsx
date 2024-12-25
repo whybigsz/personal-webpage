@@ -21,14 +21,12 @@ export default function Home() {
       <Navbar /> */}
       <Nav></Nav>
 
-      <div className="container mx-auto mt-20 left-0 px-4 flex flex-col">
+      <div className="container mx-auto mt-14 left-0 px-4 flex flex-col">
         <HeroSection />
         <Projects />
         <Services />
         <Experience />
-        {/* <About></About> */}
-        {/* <Projects></Projects> */}
-        <ContactForm></ContactForm>
+        <ContactForm />
       </div>
 
       <Footer />

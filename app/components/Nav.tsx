@@ -16,6 +16,7 @@ const Nav = () => {
   const isKeyboardOpen = useDetectKeyboardOpen();
   const [activeSection, setActiveSection] = useState("home");
   const isXlDisplay = useMediaQuery({ query: '(max-width: 1279px)' });
+  const isSmDisplay = useMediaQuery({ query: "(max-width: 639px)" });
   // Improved section tracking using IntersectionObserver
   const updateActiveSection = useCallback(() => {
     const sections = navData.map((link) => document.getElementById(link.path));
@@ -101,7 +102,7 @@ const Nav = () => {
               to={link.path}
               spy={true}
               smooth={true}
-              offset={link.path === "projects" && isXlDisplay ? 370 : -70}
+              offset={link.path === "projects" && isXlDisplay ? 370 : isSmDisplay ? 0 : -70}
               duration={500}
               onClick={() => setActiveSection(link.path)}
               className={`text-white relative flex items-center justify-center w-10 h-10 text-3xl group hover:text-white
