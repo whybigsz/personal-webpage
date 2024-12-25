@@ -89,13 +89,9 @@ const Projects = () => {
   )
 
   return (
-    <motion.section
+    <section
       id='projects'
       className="pt-20 px-10 sm:px-4 sm:mt-[40rem] xl:pt-[30rem]"
-      initial={{ y: '-5%', opacity: 0 }}
-      whileInView={{ y: '0%', opacity: 1 }}
-      viewport={{ once: true, amount: 0.8 }}
-      transition={{ duration: 1, delay: 0.3, ease: 'easeInOut' }}
     >
       <h2 className="text-5xl font-bold text-white font-title text-center mb-16">Projetos Recentes</h2>
       <div className="flex flex-row lg:flex-col lg:items-center  gap-8 justify-center">
@@ -103,7 +99,7 @@ const Projects = () => {
           <ProjectCard key={index} project={project} />
         ))}
       </div>
-    </motion.section>
+    </section>
   );
 }
 
