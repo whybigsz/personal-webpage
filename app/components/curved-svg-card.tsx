@@ -7,7 +7,6 @@ import { CardHeader, CardTitle, CardContent, CardDescription } from "@/component
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 import { useTranslation } from "react-i18next"
-
 import { motion } from 'framer-motion'
 
 type CurvedSvgCardProps = {
@@ -15,20 +14,11 @@ type CurvedSvgCardProps = {
     description?: string
     badges?: string[]
     icon?: React.ReactNode
-    // Consistent height so cards align horizontally; override as needed.
     heightClass?: string
-    // Mirror only the shape horizontally (left variant). Content stays upright.
     flipX?: boolean
     className?: string
 }
 
-/**
- * CurvedSvgCard
- * - Exact path clipping + small neutral shadow that follows curved corners.
- * - Content centered; precise font sizes (16/14/12).
- * - Fits grid cells; width is 100%; height via heightClass.
- * - Simple hover animation with pop and stronger shadow.
- */
 export function CurvedSvgCard({
     title = "Performance",
     description = "Obcecado com Core Web Vitals. Renderização edge-first, estratégias de cache e instrumentação.",
@@ -47,16 +37,15 @@ export function CurvedSvgCard({
     const vb = { w: 280, h: 380 }
     const mirror = flipX ? `translate(${vb.w},0) scale(-1,1)` : undefined
 
-    // Unique IDs per instance
     const uid = useId().replace(/[:]/g, "_")
     const filterId = `cardShadow_${uid}`
     const clipId = `cardShape_${uid}`
     const hoverFilterId = `cardShadowHover_${uid}`
 
     return (
-        <div className={cn("w-full flex items-end", className)}>
+        <div className={cn("w-full flex items-end max-w-[280px] mx-auto", className)}>
             <motion.div
-                className={cn("relative mx-auto w-full cursor-pointer group", heightClass)}
+                className={cn("relative w-full cursor-pointer group", heightClass)}
                 whileHover={{
                     scale: 1.03,
                     transition: { duration: 0.3, ease: "easeOut" }
@@ -72,14 +61,12 @@ export function CurvedSvgCard({
                     role="img"
                 >
                     <defs>
-                        {/* Normal shadow - subtle and smooth */}
                         <filter id={filterId} x="-50%" y="-50%" width="200%" height="200%">
                             <feDropShadow dx="0" dy="2" stdDeviation="1.8" floodColor="rgba(16, 185, 129, 0.24)" floodOpacity="1" />
                             <feDropShadow dx="0" dy="4" stdDeviation="2.8" floodColor="rgba(16, 185, 129, 0.18)" floodOpacity="1" />
                             <feDropShadow dx="0" dy="-1" stdDeviation="1.2" floodColor="rgba(16, 185, 129, 0.12)" floodOpacity="1" />
                         </filter>
 
-                        {/* Emerald hover shadow - less intense but still sleek */}
                         <filter id={hoverFilterId} x="-50%" y="-50%" width="200%" height="200%">
                             <feDropShadow dx="0" dy="2" stdDeviation="2.5" floodColor="rgba(16, 185, 129, 0.25)" floodOpacity="1" />
                             <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="rgba(16, 185, 129, 0.2)" floodOpacity="1" />
@@ -91,7 +78,6 @@ export function CurvedSvgCard({
                         </clipPath>
                     </defs>
 
-                    {/* Shape with shadow that changes on hover */}
                     <g
                         filter={`url(#${filterId})`}
                         className="transition-all duration-300 ease-out group-hover:hidden"
@@ -99,7 +85,6 @@ export function CurvedSvgCard({
                         <path d={d} transform={mirror} fill="white" />
                     </g>
 
-                    {/* Hover shadow version */}
                     <g
                         filter={`url(#${hoverFilterId})`}
                         className="hidden transition-all duration-300 ease-out group-hover:block"
@@ -107,26 +92,26 @@ export function CurvedSvgCard({
                         <path d={d} transform={mirror} fill="white" />
                     </g>
 
-                    {/* Centered HTML content clipped to the exact shape */}
                     <foreignObject x="0" y="0" width={vb.w} height={vb.h} clipPath={`url(#${clipId})`}>
                         <div className="h-full w-full">
                             <div className="flex h-full w-full flex-col items-center justify-center gap-4 p-6 text-center">
                                 <CardHeader className="flex flex-row items-center justify-center gap-2 p-0">
                                     {Icon}
-                                    {/* Title 16px */}
                                     <CardTitle className="m-0 h3 font-semibold leading-tight text-foreground">{t(title)}</CardTitle>
                                 </CardHeader>
 
-                                <CardContent className="space-y-3 p-0">
-                                    {/* Subtitle 14px */}
+                                <CardContent className="space-y-3 sm:space-y-6 p-0">
                                     <CardDescription className="text-lg leading-relaxed text-muted-foreground">
                                         {t(description)}
                                     </CardDescription>
 
-                                    {/* Badges 12px */}
-                                    <div className="flex flex-wrap items-center justify-center gap-2 opacity-80">
+                                    <div className="flex flex-wrap items-center justify-center gap-1 opacity-80 px-2 mt-0 sm:mt-4">
                                         {badges.map((b) => (
-                                            <Badge key={b} className="text-md leading-none py-1 px-2 font-normal" variant="outline">
+                                            <Badge
+                                                key={b}
+                                                className="text-xs sm:text-sm leading-none py-0.5 px-1.5 font-normal whitespace-nowrap"
+                                                variant="outline"
+                                            >
                                                 {b}
                                             </Badge>
                                         ))}
