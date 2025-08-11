@@ -1,5 +1,3 @@
-"use client"
-
 import * as React from "react"
 import { useTranslation } from 'react-i18next'
 import { Button } from "@/components/ui/button"
@@ -19,11 +17,29 @@ const NAMES = {
 export function LanguageDropdown({ className }: { className?: string }) {
     const { i18n } = useTranslation()
 
-    const currentLocale = i18n.language || 'en'
+    // Force English as default if no language is set or cached
+    const currentLocale = React.useMemo(() => {
+        const lang = i18n.language || 'en'
+        // If language is not one of our supported languages, fallback to English
+        if (!['en', 'pt'].includes(lang)) {
+            return 'en'
+        }
+        return lang
+    }, [i18n.language])
+
     const availableLocales = ['en', 'pt']
+
+    // Effect to force English on component mount if needed
+    React.useEffect(() => {
+        if (!i18n.language || !['en', 'pt'].includes(i18n.language)) {
+            i18n.changeLanguage('en')
+        }
+    }, [i18n])
 
     const changeLanguage = (locale: string) => {
         i18n.changeLanguage(locale)
+        // Optionally force update localStorage/cache
+        localStorage.setItem('i18nextLng', locale)
     }
 
     return (

@@ -8,7 +8,8 @@ import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 import { useTranslation } from "react-i18next"
 
-type IconProps = { className?: string; "aria-hidden"?: boolean }
+import { motion } from 'framer-motion'
+
 type CurvedSvgCardProps = {
     title?: string
     description?: string
@@ -26,6 +27,7 @@ type CurvedSvgCardProps = {
  * - Exact path clipping + small neutral shadow that follows curved corners.
  * - Content centered; precise font sizes (16/14/12).
  * - Fits grid cells; width is 100%; height via heightClass.
+ * - Simple hover animation with pop and stronger shadow.
  */
 export function CurvedSvgCard({
     title = "Performance",
@@ -49,10 +51,19 @@ export function CurvedSvgCard({
     const uid = useId().replace(/[:]/g, "_")
     const filterId = `cardShadow_${uid}`
     const clipId = `cardShape_${uid}`
+    const hoverFilterId = `cardShadowHover_${uid}`
 
     return (
         <div className={cn("w-full flex items-end", className)}>
-            <div className={cn("relative mx-auto w-full", heightClass)}>
+            <motion.div
+                className={cn("relative mx-auto w-full cursor-pointer group", heightClass)}
+                whileHover={{
+                    scale: 1.03,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                }}
+                whileTap={{ scale: 0.98 }}
+                initial={false}
+            >
                 <svg
                     viewBox={`0 0 ${vb.w} ${vb.h}`}
                     preserveAspectRatio="xMidYMid meet"
@@ -61,13 +72,18 @@ export function CurvedSvgCard({
                     role="img"
                 >
                     <defs>
-                        {/* Small, light gray shadow that hugs the curved corners */}
+                        {/* Normal shadow - subtle and smooth */}
                         <filter id={filterId} x="-50%" y="-50%" width="200%" height="200%">
-                            {/* Bottom shadows (stronger, card-like) */}
-                            <feDropShadow dx="0" dy="2" stdDeviation="1.4" floodColor="rgba(0, 128, 0, 0.12)" floodOpacity="1" />
-                            <feDropShadow dx="0" dy="4" stdDeviation="2.2" floodColor="rgba(0, 128, 0, 0.1)" floodOpacity="1" />
-                            {/* Subtle TOP shadow: small negative dy with low opacity */}
-                            <feDropShadow dx="0" dy="-2" stdDeviation="1.4" floodColor="rgba(0, 128, 0, 0.08)" floodOpacity="1" />
+                            <feDropShadow dx="0" dy="2" stdDeviation="1.8" floodColor="rgba(16, 185, 129, 0.24)" floodOpacity="1" />
+                            <feDropShadow dx="0" dy="4" stdDeviation="2.8" floodColor="rgba(16, 185, 129, 0.18)" floodOpacity="1" />
+                            <feDropShadow dx="0" dy="-1" stdDeviation="1.2" floodColor="rgba(16, 185, 129, 0.12)" floodOpacity="1" />
+                        </filter>
+
+                        {/* Emerald hover shadow - less intense but still sleek */}
+                        <filter id={hoverFilterId} x="-50%" y="-50%" width="200%" height="200%">
+                            <feDropShadow dx="0" dy="2" stdDeviation="2.5" floodColor="rgba(16, 185, 129, 0.25)" floodOpacity="1" />
+                            <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="rgba(16, 185, 129, 0.2)" floodOpacity="1" />
+                            <feDropShadow dx="0" dy="-1" stdDeviation="8" floodColor="rgba(16, 185, 129, 0.15)" floodOpacity="1" />
                         </filter>
 
                         <clipPath id={clipId} clipPathUnits="userSpaceOnUse">
@@ -75,8 +91,19 @@ export function CurvedSvgCard({
                         </clipPath>
                     </defs>
 
-                    {/* Shape with subtle card-like shadow */}
-                    <g filter={`url(#${filterId})`}>
+                    {/* Shape with shadow that changes on hover */}
+                    <g
+                        filter={`url(#${filterId})`}
+                        className="transition-all duration-300 ease-out group-hover:hidden"
+                    >
+                        <path d={d} transform={mirror} fill="white" />
+                    </g>
+
+                    {/* Hover shadow version */}
+                    <g
+                        filter={`url(#${hoverFilterId})`}
+                        className="hidden transition-all duration-300 ease-out group-hover:block"
+                    >
                         <path d={d} transform={mirror} fill="white" />
                     </g>
 
@@ -109,7 +136,7 @@ export function CurvedSvgCard({
                         </div>
                     </foreignObject>
                 </svg>
-            </div>
+            </motion.div>
         </div>
     )
 }

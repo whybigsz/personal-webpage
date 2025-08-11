@@ -6,7 +6,7 @@ import "./globals.css"
 import ClientI18nProvider from "./components/ClientI18nProvider"
 
 export const metadata: Metadata = {
-  title: "v0 App",
+  title: "Ricardo Ferreira | Portfolio",
   description: "Created with v0",
   generator: "v0.dev",
 }

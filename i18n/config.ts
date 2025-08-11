@@ -22,6 +22,7 @@ i18n
     .use(initReactI18next) // bind to React
     .init({
         resources,
+        lng: "en", // Force English as default language
         fallbackLng: "en",
         debug: process.env.NODE_ENV === "development",
 
@@ -34,8 +35,23 @@ i18n
             caches: ["localStorage"],
         },
 
+        // Whitelist only supported languages
+        supportedLngs: ["en", "pt"],
+        nonExplicitSupportedLngs: false, // Reject unsupported languages
+
+        // Clean language codes
+        cleanCode: true,
+
+        // Load only supported languages
+        load: "languageOnly",
+
         ns: ["common"],
         defaultNS: "common",
     });
+
+// Force English if current language is not supported or if nothing is cached
+if (!i18n.language || !["en", "pt"].includes(i18n.language)) {
+    i18n.changeLanguage("en");
+}
 
 export default i18n;
