@@ -11,32 +11,18 @@ const config: Config = {
 	theme: {
 		extend: {
 			fontFamily: {
-				title: ['Roboto	Serif', 'serif'],
-				body: ['Montserrat Alternates', 'sans-serif']
+				title: [
+					'Roboto	Serif',
+					'serif'
+				],
+				body: [
+					'Montserrat Alternates',
+					'sans-serif'
+				]
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
 				'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
-			},
-			screens: {
-				'2x1': {
-					max: '1535px'
-				},
-				xl: {
-					max: '1279px'
-				},
-				lg: {
-					max: '1023px'
-				},
-				md: {
-					max: '820px'
-				},
-				sm: {
-					max: '639px'
-				},
-				xs: {
-					max: '479px'
-				}
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -83,6 +69,16 @@ const config: Config = {
 					'3': 'hsl(var(--chart-3))',
 					'4': 'hsl(var(--chart-4))',
 					'5': 'hsl(var(--chart-5))'
+				},
+				sidebar: {
+					DEFAULT: 'hsl(var(--sidebar-background))',
+					foreground: 'hsl(var(--sidebar-foreground))',
+					primary: 'hsl(var(--sidebar-primary))',
+					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+					accent: 'hsl(var(--sidebar-accent))',
+					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+					border: 'hsl(var(--sidebar-border))',
+					ring: 'hsl(var(--sidebar-ring))'
 				}
 			}
 		}

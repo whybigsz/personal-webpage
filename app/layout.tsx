@@ -1,22 +1,28 @@
-'use client';
-import { Inter } from 'next/font/google'
-import './globals.css'
-<link
-  href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
-  rel="stylesheet"
-/>
+import type React from "react"
+import type { Metadata } from "next"
+import { GeistSans } from "geist/font/sans"
+import { GeistMono } from "geist/font/mono"
+import "./globals.css"
+import ClientI18nProvider from "./components/ClientI18nProvider"
 
-const inter = Inter({ subsets: ['latin'] })
+export const metadata: Metadata = {
+  title: "v0 App",
+  description: "Created with v0",
+  generator: "v0.dev",
+}
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode
-}) {
+}>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+      <body className="h-svh overflow-hidden bg-background antialiased">
+        <ClientI18nProvider>
+          {children}
+        </ClientI18nProvider>
+      </body>
     </html>
   )
 }
